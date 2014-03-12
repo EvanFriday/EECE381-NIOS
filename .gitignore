@@ -1,0 +1,15 @@
+*.bak
+*.rpt
+*.done
+*.summary
+*.jdi
+*.pin
+*.qsf
+*.sof
+*.html
+*.sopcinfo
+*.bsf
+.qsys_edit
+ubcmcldsystem
+incremental_db
+db
