@@ -9,6 +9,8 @@
 *.html
 *.sopcinfo
 *.bsf
+*.txt
+*.qpf
 .qsys_edit
 ubcmcldsystem
 incremental_db
