@@ -14,4 +14,10 @@
 .qsys_edit
 ubcmcldsystem
 incremental_db
-db
+db/
+bin/
+gen/
+libs/
+.classpath
+.project
+.settings/
