@@ -115,7 +115,7 @@ DRAM_LDQM<= DQM(0);
 NiosII: ubcmcldsystem
 PORT MAP (
 		clk_clk => CLOCK_50,
-		reset_reset_n => SW(1),
+		reset_reset_n => key(0),
 		--LEDS
 		leds_export => LEDG,
 		--SWITCHES
