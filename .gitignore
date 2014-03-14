@@ -23,3 +23,7 @@ libs/
 .settings/
 *.properties
 .sopc_builder/
+Makefile
+.cproject
+Pathfinder_BSP/
+!src/Altera_UP_SD_Card_Memory_Block.bsf
