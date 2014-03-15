@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "altera_up_avalon_rs232.h"
 #include <string.h>
+#include <system.h>
 
 int main() {
 	int i;
