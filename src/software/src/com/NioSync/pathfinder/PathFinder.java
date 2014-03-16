@@ -1,11 +1,14 @@
 package com.NioSync.pathfinder;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+import android.widget.EditText;
 
 public class PathFinder extends Activity {
 
+	EditText start_loc,dest_loc;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
