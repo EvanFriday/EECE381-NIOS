@@ -25,7 +25,5 @@ libs/
 .sopc_builder/
 Makefile
 .cproject
-Pathfinder_BSP/
-Pathfinder/
 !src/Altera_UP_SD_Card_Memory_Block.bsf
 *.qws
