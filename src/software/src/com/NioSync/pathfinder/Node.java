@@ -1,13 +1,19 @@
 package com.NioSync.pathfinder;
 
+import java.util.Vector;
+
 import android.R.string;
 
 public class Node {
+	enum Type {
+		Exit, Room, Hall, Door, Washroom, Stairway, Elevator
+	}
+	string id;
 	string name;
-	int x,y;
-	Node neighbour[];
+	Coord pos;
+	Vector<Edge> neighbours;
+	Type type;
 	
 	public Node(){
-		neighbour= new Node[2];
 	}
 }
