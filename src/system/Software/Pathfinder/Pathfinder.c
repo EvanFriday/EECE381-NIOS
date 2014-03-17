@@ -9,7 +9,7 @@ int main() {
 	int i;
 	unsigned char data;
 	unsigned char parity;
-	string file_to_read;
+	char file_to_read[];
 	unsigned char * buffer;
 	unsigned long fileLen;
 
