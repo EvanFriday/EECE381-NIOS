@@ -28,3 +28,4 @@ Makefile
 Pathfinder_BSP/
 Pathfinder/
 !src/Altera_UP_SD_Card_Memory_Block.bsf
+*.qws
