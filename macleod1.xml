@@ -1,0 +1,21 @@
+<!--#Node
+	#id
+	#name
+	#x,y
+	#type: Exit Room Hall Door Washroom Stairway, Elevator, MWash, FWash, DWash
+-->
+<graph>
+	<Image Height="469" Width="503"/>
+	<node Type="Exit" id="kaiserExit" name="Entrance from Kaiser Atrium" x="353" y="425"/>
+	<node Type="Room" id="r101" name="Room 101" x="350" y="396"/>
+	<node Type="Room" id="r112B" name="Room 112B" x="350" y="383"/>
+	<node Type="Room" id="r105" name="Room 105" x="350" y="359"/>
+	<!--...-->
+	<node Type="MWash" id="mw125" name="Mens Washroom 125" x="350" y="151"/>
+	<node Type="Hall" id="f1junction" name="" x="350" y="108"/>
+	<!--For Edges, you only need to specify one direction in the XML, the parser
+	will add the appropriate edges in both directions-->
+	<edge s="f1junction" d="r101"/>
+	<edge s="kaiserExit" d="r101"/>
+	<edge s="kaiserExit" d="f1junction"/>
+</graph>
