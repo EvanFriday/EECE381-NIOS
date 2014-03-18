@@ -5,7 +5,7 @@ public class Edge {
 	Node target;
 	int distance;
 	
-	Edge(Node Source, Node Target, int Dist) {
+	public Edge(Node Source, Node Target, int Dist) {
 		source = Source;
 		target = Target;
 		distance = Dist;

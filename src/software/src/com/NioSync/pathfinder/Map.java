@@ -1,6 +1,7 @@
 package com.NioSync.pathfinder;
 
 import java.io.File;
+
 import java.io.StringReader;
 import java.util.Vector;
 
@@ -11,6 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import android.util.Log;
 
 
 
@@ -37,7 +40,7 @@ public class Map {
 	public static Map loadMapFromFile(String Filename) {
 		Document xmlDoc;
 		if (Filename == null) {
-			String XML = "<graph><Image Height=\"469\" Width=\"503\"/><node Type=\"Exit\" id=\"kaiserExit\" name=\"Entrance from Kaiser Atrium\" x=\"353\" y=\"425\"/><node Type=\"Room\" id=\"r101\" name=\"Room 101\" x=\"350\" y=\"396\"/><node Type=\"Room\" id=\"r112B\" name=\"Room 112B\" x=\"350\" y=\"383\"/><node Type=\"Room\" id=\"r105\" name=\"Room 105\" x=\"350\" y=\"359\"/><!--...--><node Type=\"MWash\" id=\"mw125\" name=\"Mens Washroom 125\" x=\"350\" y=\"151\"/><node Type=\"Hall\" id=\"f1junction\" name=\"\" x=\"350\" y=\"108\"/><edge s=\"f1junction\" d=\"r101\"/><edge s=\"kaiserExit\" d=\"r101\"/><edge s=\"kaiserExit\" d=\"f1junction\"/></graph>";
+			String XML = "<graph><Image Height=\"469\" Width=\"503\"/><node Type=\"Exit\" id=\"kaiserExit\" name=\"Entrance from Kaiser Atrium\" x=\"353\" y=\"425\"/><node Type=\"Room\" id=\"r101\" name=\"Room 101\" x=\"350\" y=\"396\"/><node Type=\"Room\" id=\"r112B\" name=\"Room 112B\" x=\"350\" y=\"383\"/><node Type=\"Room\" id=\"r105\" name=\"Room 105\" x=\"350\" y=\"359\"/><!--...--><node Type=\"MWash\" id=\"mw125\" name=\"Mens Washroom 125\" x=\"350\" y=\"151\"/><node Type=\"Hall\" id=\"f1junction\" name=\"Floor 1 Hallway\" x=\"350\" y=\"108\"/><edge s=\"f1junction\" d=\"r101\"/><edge s=\"kaiserExit\" d=\"r101\"/><edge s=\"kaiserExit\" d=\"f1junction\"/></graph>";
 			xmlDoc = loadXMLFromString(XML);
 		}
 		else {
@@ -52,8 +55,8 @@ public class Map {
 			}
 		}
 		Map map = new Map();
-		NodeList nList = xmlDoc.getElementsByTagName("Node");
-		for (int nCount =0; nCount < nList.getLength(); nCount++) {
+		NodeList nList = xmlDoc.getElementsByTagName("node");
+		for (int nCount = 0; nCount < nList.getLength(); nCount++) {
 			org.w3c.dom.Node nNode = nList.item(nCount);			
 			Element elem = (Element) nNode;
 			Node n = new Node();
@@ -65,6 +68,7 @@ public class Map {
 			Coord c = new Coord(x,y);
 			n.setPos(c);
 			map.addNode(n);
+			System.out.println("INFO: Map: Adding node: " + n.getId());
 		}
 		nList = xmlDoc.getElementsByTagName("edge");
 		for (int nCount=0; nCount < nList.getLength(); nCount++) {
@@ -77,6 +81,7 @@ public class Map {
 			source.addEdge(e);	
 			e = new Edge(dest, source, dist);
 			dest.addEdge(e);
+			System.out.println("INFO: Map: Adding Edge: " + source.getId() + " -> " + dest.getId());
 		}
 		nList = xmlDoc.getElementsByTagName("Image");
 		Element elem = (Element) nList.item(0);
@@ -115,7 +120,7 @@ public class Map {
 	
 	public Node getNodeFromName(String name) {
 		for (Node n : nodes) {
-			if (n.getName() == name) {
+			if (n.getName().equals(name)) {
 				return n;
 			}
 		}
@@ -124,10 +129,11 @@ public class Map {
 	
 	public Node getNodeFromID(String id) {
 		for (Node n : nodes) {
-			if (n.getId() == id) {
+			if (n.getId().equals(id)) {
 				return n;
 			}
 		}
+		System.out.println("ERROR: Map.getNodeFromID(" + id + ") returning NULL!");
 		return null;
 	}
 	

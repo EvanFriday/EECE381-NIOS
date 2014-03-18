@@ -3,17 +3,17 @@ package com.NioSync.pathfinder;
 import java.lang.Math;
 
 public class Coord {
-	int x,y;
-	Coord(int X, int Y) {
+	private int x,y;
+	public Coord(int X, int Y) {
 		this.x = X;
 		this.y = Y;
 	}
 	
-	int getX() {
+	public int getX() {
 		return this.x;
 	}
 	
-	int getY() {
+	public int getY() {
 		return this.y;
 	}
 	

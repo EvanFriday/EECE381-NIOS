@@ -22,6 +22,8 @@ public class PathFinder extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_finder);
         
+        Map testmap = Map.loadMapFromFile(null);
+        
 		
         this.view_map = (Button) this.findViewById(R.id.view_map);
         this.view_map.setOnClickListener(new View.OnClickListener() {
