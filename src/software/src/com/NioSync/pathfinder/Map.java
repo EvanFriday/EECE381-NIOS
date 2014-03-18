@@ -132,10 +132,15 @@ public class Map {
 	}
 	
 	public Vector<Node> getShortestPathNodes(Node start, Node end, Boolean avoidStairs) {
+		//TODO: Implement
 		return null;
 	}
 	
 	public Vector<Coord> getShortestPathCoords(Node start, Node end, Boolean avoidStairs) {
+		Vector<Coord> coords = new Vector<Coord>();
+		for (Node n : getShortestPathNodes(start,end,avoidStairs)) {
+			coords.add(n.getPos());
+		}
 		return null;
 	}
 	
