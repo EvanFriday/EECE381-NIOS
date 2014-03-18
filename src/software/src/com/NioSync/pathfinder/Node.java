@@ -42,6 +42,13 @@ public class Node {
 		return edges;
 	}
 
+	public Vector<Node> getNeighbors() {
+		Vector<Node> neighbors = new Vector<Node>();
+		for (Edge e : edges) {
+			neighbors.add(e.getTarget());
+		}
+		return neighbors;
+	}
 	public String getType() {
 		return type;
 	}

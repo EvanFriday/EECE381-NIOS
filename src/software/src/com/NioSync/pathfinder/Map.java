@@ -144,9 +144,40 @@ public class Map {
 	}
 	
 	public Vector<Node> getShortestPathNodes(Node start, Node end, Boolean avoidStairs) {
-		//TODO: Implement
-		
-		return null;
+		return recursiveDepthFirstSearch(start, end);
+	}
+	
+	public Vector<Node> recursiveDepthFirstSearch(Node start, Node end) {
+		Vector<Node> discovered = new Vector<Node>();
+		Vector<Node> path = new Vector<Node>();
+		path.add(start);
+		discovered.add(start);
+		while(path.size() != 0) {
+			Node n = path.lastElement();
+			Vector<Node> children = n.getNeighbors();
+			int count = 0;
+			for (Node child : children) {
+				if (discovered.contains(child) == false) {
+					count++;
+				}
+			}
+			if (count == 0 || children.size() == 0) {
+				path.remove(path.size()-1);
+			} else {
+				for (Node child : children) {
+					if (discovered.contains(child) == false) {
+						discovered.add(child);
+						path.add(child);
+						if (child == end) {
+							return path;
+						}
+						break;
+					} 
+					
+				}
+			}
+		}		
+		return path;
 	}
 	
 	public Vector<Coord> getShortestPathCoords(Node start, Node end, Boolean avoidStairs) {
@@ -154,7 +185,7 @@ public class Map {
 		for (Node n : getShortestPathNodes(start,end,avoidStairs)) {
 			coords.add(n.getPos());
 		}
-		return null;
+		return coords;
 	}
 	
 	public void addNode(Node target) {
