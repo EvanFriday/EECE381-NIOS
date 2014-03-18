@@ -58,6 +58,9 @@ public class Map_tests extends TestCase {
 		Map map = Map.loadMapFromFile(null);
 		assertNotNull(map);
 		assertEquals(33, map.getNodeIDs().size());
+		assertEquals(469, map.getMapHeight());
+		assertEquals(503, map.getMapWidth());
+		
 	}
 
 

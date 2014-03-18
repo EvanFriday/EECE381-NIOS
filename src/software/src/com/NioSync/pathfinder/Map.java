@@ -17,8 +17,16 @@ import org.xml.sax.InputSource;
 
 public class Map {
 	
-	int mapWidth, mapHeight;
+	private int mapWidth, mapHeight;
 	
+	public int getMapWidth() {
+		return mapWidth;
+	}
+
+	public int getMapHeight() {
+		return mapHeight;
+	}
+
 	private Vector<Node> nodes;
 	
 	public static Document loadXMLFromString(String xml)
