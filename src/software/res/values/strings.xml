@@ -7,5 +7,7 @@
     <string name="search_button">Search</string>
     <string name="view_map">View Map</string>
     <string name="back_button">Back</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
