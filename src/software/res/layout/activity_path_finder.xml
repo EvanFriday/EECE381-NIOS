@@ -54,24 +54,30 @@
         android:layout_alignParentTop="true"
         android:layout_weight="1" />
 
-    <ImageView
-        android:id="@+id/map_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:layout_below="@+id/view_map"
-        android:src="@drawable/mcld1"
-        android:visibility="invisible" />
-
     <Button
         android:id="@+id/view_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/map_container"
+        android:layout_alignRight="@+id/linearLayout1"
         android:layout_below="@+id/linearLayout1"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="82dp"
         android:onClick="goToMapView"
         android:text="@string/view_map" />
+
+    <com.NioSync.pathfinder.MapView
+        android:id="@+id/map_container"
+        android:layout_width="273dp"
+        android:layout_height="350dp"
+        android:layout_alignLeft="@+id/startLoc"
+        android:layout_below="@+id/view_map"
+        android:layout_toLeftOf="@+id/destLoc" />
+
+    <ImageView
+        android:id="@+id/map_container2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/map_container2"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/mcld1"
+        android:visibility="invisible" />
 
 </RelativeLayout>
