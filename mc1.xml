@@ -54,7 +54,7 @@
 	<!-- edges -->
 	<edge s="kaiser" d="r101"/>
 	<edge s="r101" d="r112b"/>
-	<edge s="112b" d="r105"/>
+	<edge s="r112b" d="r105"/>
 	<edge s="r105" d="r113"/>
 	<edge s="r113" d="r112"/>
 	<edge s="r112" d="r117"/>
@@ -71,10 +71,10 @@
 	<edge s="r132a" d="r132"/>
 	<edge s="r125a" d="floor1junc"/>
 	<edge s="r132" d="r139"/>
-	<edge s="r139a" d="southExit"/>
+	<edge s="r139" d="southExit"/>
 	<edge s="floor1junc" d="r140" />
 	<edge s="r140" d="r149b"/>
-	<edge s="r49b" d="r142"/>
+	<edge s="r149b" d="r142"/>
 	<edge s="r142" d="r149"/>
 	<edge s="r149" d="r149a"/>
 	<edge s="r149" d="r148"/>
