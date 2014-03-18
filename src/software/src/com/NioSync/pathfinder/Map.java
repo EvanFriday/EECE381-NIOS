@@ -29,7 +29,6 @@ public class Map {
 			InputSource is = new InputSource(new StringReader(xml));
 		    return builder.parse(is);
 		} catch (Exception e) {
-		// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -107,10 +106,20 @@ public class Map {
 	}
 	
 	public Node getNodeFromName(String name) {
+		for (Node n : nodes) {
+			if (n.getName() == name) {
+				return n;
+			}
+		}
 		return null;
 	}
 	
 	public Node getNodeFromID(String id) {
+		for (Node n : nodes) {
+			if (n.getId() == id) {
+				return n;
+			}
+		}
 		return null;
 	}
 	
@@ -123,10 +132,6 @@ public class Map {
 	}
 	
 	public void addNode(Node target) {
-		
-	}
-
-	public void addEdge(String source, String dest, int dist) {
-		
+		nodes.add(target);		
 	}
 }
