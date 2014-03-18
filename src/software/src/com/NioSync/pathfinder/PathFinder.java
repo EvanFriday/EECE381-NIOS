@@ -32,7 +32,7 @@ public class PathFinder extends Activity {
 				viewMap();
 			}
 		});
-        
+  
     }
     
     
