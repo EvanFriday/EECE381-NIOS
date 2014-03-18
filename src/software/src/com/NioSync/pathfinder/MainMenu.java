@@ -1,8 +1,10 @@
 package com.NioSync.pathfinder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,7 +25,17 @@ public class MainMenu extends Activity {
         };
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.menu_item, menu_items);
         menuList.setAdapter(adapt);
-        
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        	public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id){
+        		TextView textView = (TextView) itemClicked;
+        		String strText = textView.getText().toString();
+        		if(strText.equalsIgnoreCase(getResources().getString(R.string.to_map))){
+        			//Launch pathfinder Activity
+        			startActivity(new Intent(MainMenu.this,PathFinder.class));
+        		}
+        	}
+		});
+
 
 		
        
