@@ -109,11 +109,33 @@ public class Map_tests extends TestCase {
 	}
 
 	public void testGetShortestPathNodes() {
-		fail("Not yet implemented");
+		Node n1 = testMap.getNodeFromID("n1");
+		Node n2 = testMap.getNodeFromID("n4");
+		Vector<Node> path = testMap.getShortestPathNodes(n1, n2, false);
+		assertNotNull(path);
+		for (Node n : path) {
+			System.out.println("INFO: Search: Node: " + n.getId());
+		}
+		assertEquals(3, path.size());
+		assertEquals("n1", path.get(0).getId());
+		assertEquals("n3", path.get(1).getId());
+		assertEquals("n4", path.get(2).getId());
 	}
 
 	public void testGetShortestPathCoords() {
-		fail("Not yet implemented");
+		Node n1 = testMap.getNodeFromID("n1");
+		Node n2 = testMap.getNodeFromID("n4");
+		Vector<Node> pathNodes = testMap.getShortestPathNodes(n1,n2,false);
+		assertNotNull(pathNodes);
+		Vector<Coord> pathCoords = new Vector<Coord>();
+		for (Node n : pathNodes) {
+			pathCoords.add(n.getPos());
+		}
+		Vector<Coord> coords = testMap.getShortestPathCoords(n1,n2,false);
+		assertNotNull(coords);
+		assertEquals(pathCoords.get(0), coords.get(0));
+		assertEquals(pathCoords.get(1), coords.get(1));
+		assertEquals(pathCoords.get(2), coords.get(2));
 	}
 
 	public void testAddNode() {
