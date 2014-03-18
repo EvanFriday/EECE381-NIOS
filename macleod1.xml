@@ -13,6 +13,8 @@
 	<!--...-->
 	<node Type="MWash" id="mw125" name="Mens Washroom 125" x="350" y="151"/>
 	<node Type="Hall" id="f1junction" name="" x="350" y="108"/>
+	<!--For Edges, you only need to specify one direction in the XML, the parser
+	will add the appropriate edges in both directions-->
 	<edge s="f1junction" d="r101"/>
 	<edge s="kaiserExit" d="r101"/>
 	<edge s="kaiserExit" d="f1junction"/>
