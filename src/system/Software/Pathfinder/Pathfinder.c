@@ -3,7 +3,7 @@
 #include <string.h>
 #include <system.h>
 int readFile(char *, void *);
-void convertToBit(void *,int);
+void convertToBit(void *, int);
 
 int main() {
 	int i;
@@ -15,10 +15,9 @@ int main() {
 
 	//Read in JPEG file
 	fileLen = readFile(file_to_read, buffer);
-	unsigned char bits[fileLen+1];
+	unsigned char bits[fileLen + 1];
 	//Convert into bits.
-	convertToBits(buffer, *fileLen, * bits);
-
+	convertToBits(buffer, *fileLen, *bits);
 
 	printf("Initializing Serial");
 	alt_up_rs232_dev* uart = alt_up_rs232_open_dev(RS232_0_NAME);
@@ -36,8 +35,9 @@ int main() {
 	}
 
 	printf("Waiting for data to come back from the Middleman\n");
-		while (alt_up_rs232_get_used_space_in_read_FIFO(uart) == 0);
-		// First byte is the number of characters in our message
+	while (alt_up_rs232_get_used_space_in_read_FIFO(uart) == 0)
+		;
+	// First byte is the number of characters in our message
 	alt_up_rs232_read_data(uart, &data, &parity);
 	int num_to_receive = (int) data;
 
@@ -53,27 +53,29 @@ int main() {
 	free(buffer);
 	return 0;
 }
+
 //read in a file to buffer, and return length of file
-int readFile(char * file_to_read, void * buffer){
+int readFile(char * file_to_read, void * buffer) {
 	FILE file = fopen(file_location, rb);
 	fseek(file, 0, SEEK_END);
-	int fileLen=ftell(file);
+	int fileLen = ftell(file);
 	fseek(file, 0, SEEK_SET);
-	buffer = (char *) malloc(&fileLen+1);
-	fread(buffer,&fileLen,1,file_to_read);
+	buffer = (char *) malloc(&fileLen + 1);
+	fread(buffer, &fileLen, 1, file_to_read);
 	fclose(file);
 	return fileLen;
 }
+
 //pass in a buffer to read from, the length of contents, and a char array to store in
-void convertToBit(void * buffer, int length, void * bits){
+void convertToBit(void * buffer, int length, void * bits) {
 	int c = 0;
 	int size = length * 8;
 	unsigned char mask = 1;
 	unsigned char byte;
 	int i = 0;
-	for (c = 0; c < length ; c++){
-		byte = ((char *)&buffer)[c];
-		for ( i = 0; i < 8; i++ ){
+	for (c = 0; c < length; c++) {
+		byte = ((char *) &buffer)[c];
+		for (i = 0; i < 8; i++) {
 			bits[i] = (byte >> i) & mask;
 		}
 	}
