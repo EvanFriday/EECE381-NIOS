@@ -26,7 +26,7 @@
 	<node Type="Exit" id="eastExit" name="Eastern Entrance" x="100" y="108"/>
 	<node Type="Room" id="r142" name="Room 142" x="303" y="108"/>
 	<node Type="Room" id="r149" name="Room 149" x="256" y="108"/>
-	<node Type="Room" id="r122a" name="Room 122A" x="369" y="242"/>
+	<node Type="Room" id="r112a" name="Room 112A" x="369" y="242"/>
 	<node Type="Room" id="r121a" name="Room 121A" x="337" y="190"/>
 	<node Type="Room" id="r132a" name="Room 132A" x="373" y="73"/>
 	<node Type="Room" id="r140" name="Room 140" x="338" y="108"/>
@@ -57,7 +57,7 @@
 	<edge s="eastExit" d="eastHall"/>
 	<edge s="kaiserHall" d="kaiserExit"/>
 	<edge s="southHall" d="southExit"/>
-	<edge s="r112" d="r122a"/>
+	<edge s="r112" d="r112a"/>
 	<edge s="r121" d="r121a"/>
 	<edge s="r132" d="r132a"/>
 	<edge s="r142" d="r142a"/>
