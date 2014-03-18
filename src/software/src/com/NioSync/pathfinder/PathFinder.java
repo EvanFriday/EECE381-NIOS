@@ -17,6 +17,7 @@ public class PathFinder extends Activity {
 	private EditText start_loc,dest_loc;
 	private Button view_map;
 	private ImageView map;
+	private MapView mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

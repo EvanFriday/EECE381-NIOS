@@ -52,14 +52,6 @@
         android:layout_alignParentTop="true"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/view_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/linearLayout1"
-        android:layout_below="@+id/linearLayout1"
-        android:text="@string/view_map" />
-
     <ImageView
         android:id="@+id/map_container"
         android:layout_width="wrap_content"
@@ -68,5 +60,15 @@
         android:layout_below="@+id/view_map"
         android:src="@drawable/mcld1"
         android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/view_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/map_container"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="82dp"
+        android:text="@string/view_map" />
 
 </RelativeLayout>
