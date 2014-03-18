@@ -57,12 +57,9 @@ public class Map_tests extends TestCase {
 	public void testLoadMapFromFile() {
 		Map map = Map.loadMapFromFile(null);
 		assertNotNull(map);
-		assertEquals(6, map.getNodeIDs().size());
+		assertEquals(33, map.getNodeIDs().size());
 	}
 
-	public void testMap() {
-		fail("Not yet implemented");
-	}
 
 	public void testGetNodeNames() {
 		Vector<String> names = testMap.getNodeNames();
