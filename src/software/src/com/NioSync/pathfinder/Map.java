@@ -86,23 +86,31 @@ public class Map {
 	}
 	
 	public Map() {
-		
+		nodes = new Vector<Node>();
 	}
 	
 	public Vector<String> getNodeNames() {
-		return null;
+		Vector<String> names = new Vector<String>();
+		for (Node n : nodes) {
+			names.add(n.getName());
+		}
+		return names;
 	}
 	
 	public Vector<String> getNodeIDs() {
-		return null;
+		Vector<String> ids = new Vector<String>();
+		for (Node n : nodes) {
+			ids.add(n.getId());
+		}
+		return ids;
 	}
 	
 	public String getNodeNameFromID(String id) {
-		return null;
+		return getNodeFromID(id).getName();
 	}
 	
 	public String getNodeIDFromName(String Name) {
-		return null;
+		return getNodeFromName(Name).getId();
 	}
 	
 	public Node getNodeFromName(String name) {
