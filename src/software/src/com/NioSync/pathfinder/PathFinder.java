@@ -32,17 +32,8 @@ public class PathFinder extends Activity {
 				viewMap();
 			}
 		});
-  
+        
     }
-    
-	public void goToMapView(View view) {
-	    // Do something in response to button
-		Intent intent = new Intent(this, MapView.class);
-		//EditText editText = (EditText) findViewById(R.id.edit_message);
-		//String message = editText.getText().toString();
-		//intent.putExtra(EXTRA_MESSAGE, message);
-		startActivity(intent);
-	}
     
     
     public void viewMap(){

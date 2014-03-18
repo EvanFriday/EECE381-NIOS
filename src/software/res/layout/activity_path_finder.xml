@@ -33,7 +33,6 @@
             android:layout_width="360dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:onClick="goToMapView"
             android:text="@string/search_button" />
 
     </LinearLayout>
@@ -60,7 +59,6 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/linearLayout1"
         android:layout_below="@+id/linearLayout1"
-        android:onClick="goToMapView"
         android:text="@string/view_map" />
 
     <com.NioSync.pathfinder.MapView
