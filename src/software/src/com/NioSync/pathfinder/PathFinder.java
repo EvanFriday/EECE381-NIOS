@@ -1,6 +1,9 @@
 package com.NioSync.pathfinder;
 
+
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -17,7 +20,6 @@ public class PathFinder extends Activity {
 	private EditText start_loc,dest_loc;
 	private Button view_map;
 	private ImageView map;
-	private MapView mapView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,15 @@ public class PathFinder extends Activity {
 		});
   
     }
+    
+	public void goToMapView(View view) {
+	    // Do something in response to button
+		Intent intent = new Intent(this, MapView.class);
+		//EditText editText = (EditText) findViewById(R.id.edit_message);
+		//String message = editText.getText().toString();
+		//intent.putExtra(EXTRA_MESSAGE, message);
+		startActivity(intent);
+	}
     
     
     public void viewMap(){
