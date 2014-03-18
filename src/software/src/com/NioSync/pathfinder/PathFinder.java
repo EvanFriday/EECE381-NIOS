@@ -23,8 +23,7 @@ public class PathFinder extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_path_finder);
-        
+        setContentView(R.layout.activity_path_finder);        
 		
         this.view_map = (Button) this.findViewById(R.id.view_map);
         this.view_map.setOnClickListener(new View.OnClickListener() {
