@@ -1,0 +1,37 @@
+De2 Communication Algorithm:
+
+De2:
+maxMessageSize = maximum size (in bytes) that can be sent in one message
+
+procedure SendFile(File) {
+	fileSize = size (in bytes) of file to send
+	msgCount = roundUp(fileSize/maxMessageSize)
+	fileParts = splitFile(File, msgCount)
+	sendMessage(msgCount)
+	while (recieveMessage() != "Size Recieved as " + fileSize) {//Wait}
+	for (i = 0 to msgCount) {
+		sendMessage(fileParts[i])
+		while (recieveMessage() != "Recieved Part " + i) {//Wait, perhaps with some timer to stop it from freezing indefinitely}
+	}
+}
+
+Android:
+procedure getFile() {
+	msg = receiveMessage()
+	while(msg == 0) {
+		//wait for message to be received
+		msg = receiveMessage();
+	}
+	size = (int)msg
+	sendMsg("Size Recieved as " + size)
+	fileParts = new Vector
+	for (i = 0 to size) {
+		msg = receiveMessage()
+		while(msg == 0) {
+			//wait for message to be received
+			msg = receiveMessage();
+		}
+		fileParts.add(msg)
+		sendMsg("Received Message " + i)
+	}
+}
