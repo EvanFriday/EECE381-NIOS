@@ -9,5 +9,6 @@
     <string name="back_button">Back</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="selected_map">Selected Map</string>
 
 </resources>
