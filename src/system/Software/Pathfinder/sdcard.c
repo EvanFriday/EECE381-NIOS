@@ -23,7 +23,7 @@ void testsdcard(sdcard *card, alt_up_sd_card_dev *device_reference) {
 	}
 }
 
-void readsendfile(char* name) {
+void readsendfile(char* name, alt_up_rs232_dev *uart) {
 	int handle;
 	char temp_sdread = 1;
 	handle = alt_up_sd_card_fopen(name, 0);
