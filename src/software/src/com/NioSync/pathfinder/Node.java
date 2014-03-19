@@ -4,13 +4,14 @@ import java.util.Vector;
 
 
 public class Node {
-	String id;
-	String name;
-	Coord pos;
-	Vector<Edge> edges;
-	String type; //Exit, Room, Hall, Door, MWash, FWash, DWash, Stairway, Elevator
+	private String id;
+	private String name;
+	private Coord pos;
+	private Vector<Edge> edges;
+	private String type; //Exit, Room, Hall, Door, MWash, FWash, DWash, Stairway, Elevator
 	
 	public Node(){
+		edges = new Vector<Edge>();
 	}
 
 	public String getId() {
@@ -41,6 +42,13 @@ public class Node {
 		return edges;
 	}
 
+	public Vector<Node> getNeighbors() {
+		Vector<Node> neighbors = new Vector<Node>();
+		for (Edge e : edges) {
+			neighbors.add(e.getTarget());
+		}
+		return neighbors;
+	}
 	public String getType() {
 		return type;
 	}
@@ -52,4 +60,5 @@ public class Node {
 	public void addEdge(Edge e) {
 		edges.add(e);
 	}
+	
 }

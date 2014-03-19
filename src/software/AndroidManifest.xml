@@ -22,13 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.NioSync.pathfinder.PathFinder"
             android:label="@string/app_name" 
 			android:parentActivityName="com.NioSync.pathfinder.MainMenu">
         </activity>
-        
+
     </application>
 
 </manifest>
