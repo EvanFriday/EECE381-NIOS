@@ -3,6 +3,7 @@ package com.NioSync.pathfinder;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +32,12 @@ public class MainMenu extends Activity {
         		String strText = textView.getText().toString();
         		if(strText.equalsIgnoreCase(getResources().getString(R.string.to_map))){
         			//Launch pathfinder Activity
+        			Log.e("activity swap", "swapping to pathfinder");
         			startActivity(new Intent(MainMenu.this,PathFinder.class));
+        			
+        		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
+        			//TODO: setcontentview to help page.
         		}
         	}
 		});
@@ -40,5 +46,6 @@ public class MainMenu extends Activity {
 		
        
     }
+	//TODO: function to setcontent view
 
 }

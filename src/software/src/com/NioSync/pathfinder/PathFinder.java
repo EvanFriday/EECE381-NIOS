@@ -2,12 +2,7 @@ package com.NioSync.pathfinder;
 
 
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -20,23 +15,18 @@ public class PathFinder extends Activity {
 	private EditText start_loc,dest_loc;
 	private Button view_map;
 	private ImageView map;
-    @Override
+    @Override	
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-
-        
         setContentView(R.layout.activity_path_finder);        
-		
+	
         this.view_map = (Button) this.findViewById(R.id.view_map);
         this.view_map.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				viewMap();
 			}
-		});
-        
-        
+		}); 
     }
     
     

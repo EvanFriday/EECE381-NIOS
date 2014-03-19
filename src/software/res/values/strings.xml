@@ -11,9 +11,14 @@
     <string name="to_map_select">Select a Map</string>
     <string name="to_help">Help</string>
     <string name="selected_map">No Map Currently Selected</string>
-
     <string name="title_activity_map">MapActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="help_text_1">How do I select a map?</string>
+    <string name="help_text_1_view">Click the \'Choose Map\' button in the main menu, and select map needed, or select and download. Alternatively you can scan a QR code</string>
+    <string name="help_text_2">Question2</string>
+    <string name="help_text_2_view">help text for two</string>
+    <string name="help_text_3">Question3</string>
+    <string name="help_text_3_view">help text for three</string>
 
 
 </resources>
