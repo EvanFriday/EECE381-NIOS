@@ -1,12 +1,18 @@
+
 <!--#Node
 	#id
 	#name
 	#x,y
 	#type: Exit, Room, Hall, Washroom, Stairway, Elevator, MWash, FWash, DWash
 -->
+
 <graph>
+	
 	<Image Height="469" Width="503"/>
+	
+
 	<!-- Rooms -->
+	
 	<!-- Vert Hall Left Side -->
 	<node Type="Room" id="r101" name="Room 101" x="350" y="400"/>
 	<node Type="Room" id="r105" name="Room 105" x="350" y="340"/>
@@ -16,6 +22,7 @@
 	<node Type="Room" id="r121" name="Room 121" x="350" y="196"/>
 	<node Type="Room" id="r121a" name="Room 121A" x="336" y="194"/>
 	<node Type="Room" id="r139" name="Room 139" x="350" y="50"/>
+	
 	<!-- Vert Hall, Right Side -->
 	<node Type="Room" id="r112b" name="Room 112B" x="350" y="382"/>
 	<node Type="Room" id="r112" name="Room 112" x="350" y="254"/>
@@ -23,12 +30,14 @@
 	<node Type="Room" id="r130" name="Room 130" x="350" y="195"/>
 	<node Type="Room" id="r132" name="Room 132" x="350" y="100"/>
 	<node Type="Room" id="r132a" name="Room 132A" x="372" y="61"/>
+	
 	<!-- Horiz Hall Bottom -->
 	<node Type="Room" id="r149b" name="Room 149B" x="336" y="108"/>
 	<node Type="Room" id="r149a" name="Room 149A" x="281" y="124"/>
 	<node Type="Room" id="r149" name="Room 149" x="256" y="108"/>
 	<node Type="Room" id="r155" name="Room 155" x="232" y="108"/>
 	<node Type="Room" id="r155a" name="Room 155A" x="189" y="108"/>
+	
 	<!-- Horiz Hall Top -->
 	<node Type="Room" id="r158" name="Room 158" x="135" y="108"/>
 	<node Type="Room" id="r154" name="Room 154" x="185" y="108"/>
@@ -39,6 +48,7 @@
 	<node Type="Room" id="r142a" name="Room 142A" x="306" y="77"/>
 	<node Type="Room" id="r140" name="Room 140" x="338" y="108"/>
 
+	
 	<!-- WashRooms -->
 	<node Type="MWash" id="r125" name="Mens Wash: First Floor" x="350" y="158"/>
 	<node Type="DWash" id="r125a" name="Handicap Wash: First Floor" x="350" y="144"/>
