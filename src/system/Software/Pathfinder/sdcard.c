@@ -23,11 +23,15 @@ void testsdcard(sdcard *card, alt_up_sd_card_dev *device_reference) {
 	}
 }
 
-void readfile(char* name) {
+void readsendfile(char* name) {
 	int handle;
+	char temp_sdread = 1;
 	handle = alt_up_sd_card_fopen(name, 0);
-	while (alt_up_sd_card_read(handle) != -1) {
-		//alt_up_rs232_write_data(uart, alt_up_sd_card_read(handle));
+	while (temp_sdread != -1) {
+		temp_sdread = alt_up_sd_card_read(handle);
+		alt_up_rs232_write_data(uart, temp_sdread);
+		while (alt_up_rs232_get_available_space_in_write_FIFO(uart) < 10)
+			;
 	}
 }
 
