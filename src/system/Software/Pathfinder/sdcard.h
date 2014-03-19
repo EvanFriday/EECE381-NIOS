@@ -11,4 +11,4 @@ void initsdcard(sdcard *card, alt_up_sd_card_dev **device_reference);
 
 void testsdcard(sdcard *card, alt_up_sd_card_dev *device_reference);
 
-void readsendfile(char* name);
+void readsendfile(char* name, alt_up_rs232_dev *uart);
