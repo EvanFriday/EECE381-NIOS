@@ -33,5 +33,6 @@ void readsendfile(char* name, alt_up_rs232_dev *uart) {
 		while (alt_up_rs232_get_available_space_in_write_FIFO(uart) < 10)
 			;
 	}
+	alt_up_sd_card_fclose(handle);
 }
 

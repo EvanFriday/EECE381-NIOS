@@ -40,7 +40,7 @@ int main() {
 	 int num_to_receive = (int) data;*/
 	//printf("About to receive %d characters:\n", num_to_receive);
 	printf("About to receive characters:\n");
-	while (1) {
+	while (alt_up_rs232_get_used_space_in_read_FIFO(uart)) {
 		alt_up_rs232_read_data(uart, &data, &parity);
 		printf("%c", data);
 	}
