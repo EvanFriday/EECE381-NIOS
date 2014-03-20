@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.NioSync.pathfinder"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    android:theme="@android:style/Theme.NoTitleBar"
+    >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -26,10 +28,10 @@
         android:required="true"
         android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
     
-    <uses-permission
+   <!--   <uses-permission
         android:required="true"
         android:name="android.permission.UPDATE_DEVICE_STATS"/>
-    
+    -->
     <uses-permission
         android:required="true"
         android:name="android.permission.WAKE_LOCK"/>
@@ -39,14 +41,13 @@
         android:name="android.permission.INTERNET"/>
     
     <uses-permission android:name="android.permission.BLUETOOTH"/>
-    
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.NoTitleBar" >
          <activity
             android:name="com.NioSync.pathfinder.MainMenu"
             android:label="@string/app_name" >
