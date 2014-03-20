@@ -30,8 +30,12 @@ public class PathFinder extends Activity {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_finder);
         map_object = new Map();
+        map_object.loadMapFromFile(null);
        pulldown = (ImageButton) findViewById(R.id.pulldown);
        start_loc_spin = (Spinner) findViewById(R.id.startLoc);
+       dest_loc_spin = (Spinner) findViewById(R.id.destLoc);
+       spindownPopulate(start_loc_spin);
+       spindownPopulate(dest_loc_spin);
        
        
        
@@ -82,15 +86,14 @@ public class PathFinder extends Activity {
     	}
     }
     public void spindownPopulate(Spinner spin){
-    	int count = map_object.getNodeNames().size();
+    	int count = this.map_object.getNodeNames().size();
         String[] node_names = new String[count];
-        map_object.getNodeNames().copyInto(node_names); 
+        this.map_object.getNodeNames().copyInto(node_names); 
         for(int i=0;i<count;i++){
         Log.e("ARRAY CONTAINS",node_names[i]);
         }
-        
         ArrayAdapter<String> spinner_adapter_start = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, node_names);
-        start_loc_spin.setAdapter(spinner_adapter_start);
+        spin.setAdapter(spinner_adapter_start);
     }
     
 }
