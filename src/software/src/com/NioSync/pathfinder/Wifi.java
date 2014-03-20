@@ -40,7 +40,7 @@ public class Wifi extends Activity {
         public void onCreate(Bundle savedInstanceState) {
         	super.onCreate(savedInstanceState);
             setContentView(R.layout.wifi_connection);
-        }
+        } 
 
         public boolean onCreateOptionsMenu(Menu menu) {
             menu.add(0, 0, 0, "Refresh");
