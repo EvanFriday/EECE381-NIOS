@@ -25,16 +25,6 @@ int main() {
 
 	printf("Sending the message to the Middleman\n");
 	readsendfile("nodes.xml", uart);
-	// Now receive the message from the Middleman
-	printf("Waiting for data to come back from the Middleman\n");
-	while (alt_up_rs232_get_used_space_in_read_FIFO(uart) == 0)
-		;
-
-	printf("About to receive characters:\n");
-	while (alt_up_rs232_get_used_space_in_read_FIFO(uart)) {
-		alt_up_rs232_read_data(uart, &data, &parity);
-		printf("%c", data);
-	}
 
 	printf("\n");
 	printf("Message Echo Complete\n");
