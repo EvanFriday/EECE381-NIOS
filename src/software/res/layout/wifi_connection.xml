@@ -9,46 +9,15 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/help_text_1" />
+        android:text="@string/wifi_1" />
 
     <TextView
         android:id="@+id/help_view_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/help_text_1_view"        
+        android:text="@string/wifi_1_view"        
         android:visibility="gone"
         />
 
-    <Button
-        android:id="@+id/help_button_2"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/help_text_2" />
-
-    <TextView
-        android:id="@+id/help_view_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/help_text_2_view"
-        android:visibility="gone"
-        />
-
-    <Button
-        android:id="@+id/help_button_3"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/help_text_3" />
-
-
-
-<TextView
-    android:id="@+id/help_view_3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/help_text_3_view"
-    android:visibility="gone"
-        />
 
 </LinearLayout>
