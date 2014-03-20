@@ -37,7 +37,9 @@ public class MainMenu extends Activity {
         			
         		}
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
-        			//TODO: setcontentview to help page.
+        			//TODO: Start activity for help
+        			startActivity(new Intent(MainMenu.this,Help.class));
+        			
         		}
         	}
 		});

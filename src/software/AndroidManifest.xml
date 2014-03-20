@@ -62,6 +62,11 @@
             android:label="@string/app_name" 
 			android:parentActivityName="com.NioSync.pathfinder.MainMenu">
         </activity>
+        <activity
+            android:name="com.NioSync.pathfinder.Help"
+            android:label="@string/app_name" 
+			android:parentActivityName="com.NioSync.pathfinder.MainMenu">
+        </activity>
 
     </application>
 
