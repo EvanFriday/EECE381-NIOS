@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
     
+    <uses-feature android:name="android.hardware.wifi" />
+    
     <uses-permission 
         android:required="true"
         android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,6 +21,10 @@
     <uses-permission
         android:required="true"
         android:name="android.permission.CHANGE_WIFI_STATE"/>
+    
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
     
     <uses-permission
         android:required="true"
