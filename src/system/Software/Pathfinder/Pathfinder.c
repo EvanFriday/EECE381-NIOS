@@ -8,7 +8,6 @@ int main() {
 	int i;
 	unsigned char data;
 	unsigned char parity;
-	//unsigned char message[] = "EECE381 is so much fun";
 	sdcard card;
 
 	//initializing sdcard

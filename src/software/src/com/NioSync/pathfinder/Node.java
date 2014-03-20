@@ -1,13 +1,64 @@
 package com.NioSync.pathfinder;
 
-import android.R.string;
+import java.util.Vector;
+
 
 public class Node {
-	string name;
-	int x,y;
-	Node neighbour[];
+	private String id;
+	private String name;
+	private Coord pos;
+	private Vector<Edge> edges;
+	private String type; //Exit, Room, Hall, Door, MWash, FWash, DWash, Stairway, Elevator
 	
 	public Node(){
-		neighbour= new Node[2];
+		edges = new Vector<Edge>();
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String string) {
+		this.id = string;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Coord getPos() {
+		return pos;
+	}
+
+	public void setPos(Coord pos) {
+		this.pos = pos;
+	}
+
+	public Vector<Edge> getEdges() {
+		return edges;
+	}
+
+	public Vector<Node> getNeighbors() {
+		Vector<Node> neighbors = new Vector<Node>();
+		for (Edge e : edges) {
+			neighbors.add(e.getTarget());
+		}
+		return neighbors;
+	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void addEdge(Edge e) {
+		edges.add(e);
+	}
+	
 }
