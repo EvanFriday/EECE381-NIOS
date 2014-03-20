@@ -51,18 +51,16 @@ libs/
 Makefile
 
 .cproject
-<<<<<<< HEAD
-Pathfinder_BSP/
-!src/Altera_UP_SD_Card_Memory_Block.bsf
-*.qws
-=======
 !src/
 Altera_UP_SD_Card_Memory_Block.bsf
 *.qws
 Pathfinder_BSP/
-Pathfinder/
+obj/
+*.objdump
+*.elf
 !*.c
 !*.h
+!*.java
 *.db
 .DS_Store
->>>>>>> 7427adaa96ff3331de52d7c50d6a25ef7b8620c6
+*.map
