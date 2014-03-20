@@ -19,6 +19,7 @@
     <string name="help_text_2_view">help text for two</string>
     <string name="help_text_3">Question3</string>
     <string name="help_text_3_view">help text for three</string>
+    <string name="pulldown">Pulldown For Location Select</string>
 
 
 </resources>
