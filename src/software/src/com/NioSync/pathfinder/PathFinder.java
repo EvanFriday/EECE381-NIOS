@@ -85,13 +85,7 @@ public class PathFinder extends Activity {
     	}
     }
     public void spindownPopulate(Spinner spin){
-    	int count = this.map_object.getNodeNames().size();
-        String[] node_names = new String[count];
-        this.map_object.getNodeNames().copyInto(node_names); 
-        for(int i=0;i<count;i++){
-        Log.e("ARRAY CONTAINS",node_names[i]);
-        }
-        ArrayAdapter<String> spinner_adapter_start = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, node_names);
+        ArrayAdapter<String> spinner_adapter_start = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, this.map_object.getNodeNames());
         spin.setAdapter(spinner_adapter_start);
     }
     
