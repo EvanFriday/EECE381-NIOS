@@ -8,6 +8,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -27,7 +29,7 @@ public class MapView extends View {
 	
 	public MapView(Context context, AttributeSet attrs) {
 		super(context, attrs);	
-		//this.setBackgroundResource(R.drawable.mcld1);
+		
 		this.bitmaps = BitmapFactory.decodeStream(getResources().openRawResource(R.raw.mcld1));	
 	}
 	
@@ -55,12 +57,23 @@ public class MapView extends View {
 		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
 	}
 	
-	public void onDraw(Canvas canvas, Map map ){
+	public void onDraw(Canvas canvas, Map map, String startID, String endID){
 		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
-		//TODO: call:
-		//canvas.drawLines(points_to_connect, paint);
-		//where points to connect is the x,y coordinates from shortest path algorithm.
-	
+		
+		Paint paint = new Paint();
+		paint.setColor(Color.WHITE);
+		paint.setStrokeWidth(1);
+		
+		Node startNode = map.getNodeFromID(startID);
+		
+		Node endNode = map.getNodeFromID(endID);
+		
+		Vector<Coord> Path= map.getShortestPathCoords(startNode, endNode, false);
+		
+		for(int i=1;i< Path.size();i++){
+			canvas.drawLine(Path.elementAt(i-1).getX(), Path.elementAt(i-1).getY(), Path.elementAt(i).getX(), Path.elementAt(i).getY(), paint);
+		}
+		
 	}
 	
 
