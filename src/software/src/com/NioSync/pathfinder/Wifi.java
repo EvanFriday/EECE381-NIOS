@@ -1,6 +1,8 @@
 package com.NioSync.pathfinder;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -15,6 +17,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.text.InputType;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class Wifi extends Activity {
         TextView mainText;
@@ -23,18 +37,10 @@ public class Wifi extends Activity {
         List<ScanResult> wifiList;
         StringBuilder sb = new StringBuilder();
         
-        /*  I need to fix this
         public void onCreate(Bundle savedInstanceState) {
-           super.onCreate(savedInstanceState);
-           setContentView(R.layout.main);
-           mainText = (TextView) findViewById(R.id.mainText);
-           mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-           receiverWifi = new WifiReceiver();
-           registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-           mainWifi.startScan();
-           mainText.setText("\\nStarting Scan...\\n");
+        	super.onCreate(savedInstanceState);
+            setContentView(R.layout.wifi_connection);
         }
-        */
 
         public boolean onCreateOptionsMenu(Menu menu) {
             menu.add(0, 0, 0, "Refresh");
