@@ -91,8 +91,9 @@ public class PathFinder extends Activity {
         for(int i=0;i<count;i++){
         Log.e("ARRAY CONTAINS",node_names[i]);
         }
-        ArrayAdapter<String> spinner_adapter_start = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, node_names);
-        spin.setAdapter(spinner_adapter_start);
+        ArrayAdapter<String> spinner_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, node_names);
+        spinner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(spinner_adapter);
     }
     
 }
