@@ -19,7 +19,6 @@ import android.widget.Spinner;
 public class PathFinder extends Activity {
 
 	private EditText start_loc,dest_loc;
-	private ImageView map;
 	private ImageButton pulldown;
 	private LinearLayout pulldown_container;
 	private RelativeLayout pathfinder_rel;
