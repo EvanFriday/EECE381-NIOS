@@ -72,6 +72,12 @@ public class Wifi extends Activity {
 		menu.add(0, 0, 0, "Refresh");
 		return super.onCreateOptionsMenu(menu);
 	}
+	
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		mainWifi.startScan();
+		mainText.setText("Scanning for WiFi networks...");
+		return super.onMenuItemSelected(featureId, item);
+	}
 
 
 	private void connectWifi(final int position) {
@@ -94,12 +100,6 @@ public class Wifi extends Activity {
 
 	}
 
-
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		mainWifi.startScan();
-		mainText.setText("Starting Scan");
-		return super.onMenuItemSelected(featureId, item);
-	}
 
 	protected void onPause() {
 		unregisterReceiver(receiverWifi);
