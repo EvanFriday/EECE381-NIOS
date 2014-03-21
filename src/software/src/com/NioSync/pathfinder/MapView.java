@@ -79,8 +79,8 @@ public class MapView extends View {
 		for(int i=1;i< Path.size();i++){
 			int startx = (int)(Path.elementAt(i-1).getX() * scaleX);
 			int starty = (int)(Path.elementAt(i-1).getY() * scaleY);
-			int endx = (int)(Path.elementAt(i).getX() * scaleY);
-			int endy = (int)(Path.elementAt(i).getY() * scaleX);
+			int endx = (int)(Path.elementAt(i).getX() * scaleX);
+			int endy = (int)(Path.elementAt(i).getY() * scaleY);
 			
 			canvas.drawLine(startx, starty, endx, endy, paint);
 		}
