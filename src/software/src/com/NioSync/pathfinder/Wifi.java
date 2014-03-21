@@ -34,69 +34,69 @@ import android.widget.Toast;
 
 
 public class Wifi extends Activity {
-        
+
 	TextView mainText;
-        WifiManager mainWifi;
-        WifiReceiver receiverWifi;
-        List<ScanResult> wifiList;
-        StringBuilder sb = new StringBuilder();
-        
-        public void onCreate(Bundle savedInstanceState) {
-        	super.onCreate(savedInstanceState);
-            setContentView(R.layout.wifi_connection);
-        } 
-        
-        private void connectWifi(final int position) {
-        
-        	
-        	final int value = wifiList.size()-1 - position;
-        	String Capabilities =  wifiList.get(value).capabilities;
-        	
-        	if(Capabilities.contains("WPA")) {
-        		
-        	}
-        	
-        	else if(Capabilities.contains("WEP")){
-        		
-        	}
-        	
-        	else {
-        		
-        	}
-                	
-        }
+	WifiManager mainWifi;
+	WifiReceiver receiverWifi;
+	List<ScanResult> wifiList;
+	StringBuilder sb = new StringBuilder();
 
-        public boolean onCreateOptionsMenu(Menu menu) {
-            menu.add(0, 0, 0, "Refresh");
-            return super.onCreateOptionsMenu(menu);
-        }
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.wifi_connection);
+	} 
 
-        public boolean onMenuItemSelected(int featureId, MenuItem item) {
-            mainWifi.startScan();
-            mainText.setText("Starting Scan");
-            return super.onMenuItemSelected(featureId, item);
-        }
+	private void connectWifi(final int position) {
 
-        protected void onPause() {
-            unregisterReceiver(receiverWifi);
-            super.onPause();
-        }
 
-        protected void onResume() {
-            registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-            super.onResume();
-        }
-        
-        class WifiReceiver extends BroadcastReceiver {
-            public void onReceive(Context c, Intent intent) {
-                sb = new StringBuilder();
-                wifiList = mainWifi.getScanResults();
-                for(int i = 0; i < wifiList.size(); i++){
-                    sb.append(new Integer(i+1).toString() + ".");
-                    sb.append((wifiList.get(i)).toString());
-                    sb.append("\\n");
-                }
-                mainText.setText(sb);
-            }
-        }
-    }
+		final int value = wifiList.size()-1 - position;
+		String Capabilities =  wifiList.get(value).capabilities;
+
+		if(Capabilities.contains("WPA")) {
+
+		}
+
+		else if(Capabilities.contains("WEP")){
+
+		}
+
+		else {
+
+		}
+
+	}
+
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0, 0, 0, "Refresh");
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		mainWifi.startScan();
+		mainText.setText("Starting Scan");
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	protected void onPause() {
+		unregisterReceiver(receiverWifi);
+		super.onPause();
+	}
+
+	protected void onResume() {
+		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		super.onResume();
+	}
+
+	class WifiReceiver extends BroadcastReceiver {
+		public void onReceive(Context c, Intent intent) {
+			sb = new StringBuilder();
+			wifiList = mainWifi.getScanResults();
+			for(int i = 0; i < wifiList.size(); i++){
+				sb.append(new Integer(i+1).toString() + ".");
+				sb.append((wifiList.get(i)).toString());
+				sb.append("\\n");
+			}
+			mainText.setText(sb);
+		}
+	}
+}
