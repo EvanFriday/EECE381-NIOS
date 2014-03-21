@@ -16,6 +16,7 @@ public class MainMenu extends Activity {
 	TextView map_selected;
 
 	protected void onCreate(Bundle savedInstanceState) {
+<<<<<<< HEAD
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		ListView menuList = (ListView) findViewById(R.id.listview_menu);
@@ -35,6 +36,36 @@ public class MainMenu extends Activity {
 					// Launch pathfinder Activity
 					Log.e("activity swap", "swapping to pathfinder");
 					startActivity(new Intent(MainMenu.this, PathFinder.class));
+=======
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
+        ListView menuList = (ListView) findViewById(R.id.listview_menu);
+        String [] menu_items = {
+        		getResources().getString(R.string.to_map),
+        		getResources().getString(R.string.download_map),
+        		getResources().getString(R.string.to_map_select),
+        		getResources().getString(R.string.to_help)
+        };
+        ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.menu_item, menu_items);
+        menuList.setAdapter(adapt);
+        menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        	public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id){
+        		TextView textView = (TextView) itemClicked;
+        		String strText = textView.getText().toString();
+        		if(strText.equalsIgnoreCase(getResources().getString(R.string.to_map))){
+        			//Launch pathfinder Activity
+        			Log.e("activity swap", "swapping to pathfinder");
+        			startActivity(new Intent(MainMenu.this,PathFinder.class));
+        			
+        		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
+        			//TODO: Start activity for help
+        			startActivity(new Intent(MainMenu.this,Help.class));
+        			
+        		}
+        	}
+		});
+>>>>>>> 1bc89cfa1a8d4452a32e9ff740773e1afe8fbebd
 
 				} else if (strText.equalsIgnoreCase(getResources().getString(
 						R.string.to_help))) {

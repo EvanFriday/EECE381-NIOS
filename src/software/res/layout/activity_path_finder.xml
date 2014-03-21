@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
+        
          >        
         
         
@@ -35,8 +35,6 @@
                 android:ems="10"
                 android:hint="@string/search_hint"
                 android:inputType="number" >
-
-                <requestFocus />
             </EditText>
 
             <Button
@@ -49,19 +47,17 @@
         </LinearLayout>
 
         <Spinner
-            android:id="@+id/destLoc"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-          
-            android:visibility="gone"
-            />
-
-        <Spinner
             android:id="@+id/startLoc"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            
-             android:visibility="gone" />
+            android:layout_height="wrap_content"
+             
+            android:layout_weight="2"                />
+
+        <Spinner
+            android:id="@+id/destLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
 
     </LinearLayout>
 

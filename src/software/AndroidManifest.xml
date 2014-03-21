@@ -28,11 +28,7 @@
         android:required="true"
         android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
     
-   <!--   <uses-permission
-        android:required="true"
-        android:name="android.permission.UPDATE_DEVICE_STATS"/>
-    -->
-    <uses-permission
+  <uses-permission
         android:required="true"
         android:name="android.permission.WAKE_LOCK"/>
     
