@@ -49,9 +49,7 @@ public class Wifi extends Activity {
 		setContentView(R.layout.wifi_connection);
 		
 		mainText = (TextView) findViewById(R.id.help_view_1);
-		
 		mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-
 
 		if (mainWifi.isWifiEnabled() == false)
 		{   
@@ -62,14 +60,17 @@ public class Wifi extends Activity {
 					Toast.LENGTH_LONG).show();
 		} 
 
-		// wifi scaned value broadcast receiver 
 		receiverWifi = new WifiReceiver();
-
-		// Register broadcast receiver 
-		// Broacast receiver will automatically call when number of wifi connections changed
+		
 		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		
 		mainWifi.startScan();
-		mainText.setText("Starting Scan...");
+		mainText.setText("Scanning for WiFi networks...");
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0, 0, 0, "Refresh");
+		return super.onCreateOptionsMenu(menu);
 	}
 
 
@@ -93,10 +94,6 @@ public class Wifi extends Activity {
 
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, 0, 0, "Refresh");
-		return super.onCreateOptionsMenu(menu);
-	}
 
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		mainWifi.startScan();
