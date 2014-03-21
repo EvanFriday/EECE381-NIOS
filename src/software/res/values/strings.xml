@@ -22,6 +22,7 @@
     <string name="wifi_1_view">wifi button</string>
     <string name="wifi_1">Click to choose a WiFi network.</string>
     <string name="pulldown">Pulldown For Location Select</string>
+    <string name="wifi_2"></string>
 
 
 </resources>

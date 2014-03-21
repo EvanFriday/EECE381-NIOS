@@ -47,7 +47,7 @@ public class Wifi extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi_connection);
-		
+
 		mainText = (TextView) findViewById(R.id.help_view_1);
 		mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -61,13 +61,13 @@ public class Wifi extends Activity {
 		} 
 
 		receiverWifi = new WifiReceiver();
-		
+
 		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-		
+
 		mainWifi.startScan();
 		mainText.setText("Scanning for WiFi networks...");
 	}
-	
+
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, 0, 0, "Refresh");
 		return super.onCreateOptionsMenu(menu);
