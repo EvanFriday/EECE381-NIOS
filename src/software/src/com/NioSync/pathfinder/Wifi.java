@@ -78,11 +78,37 @@ public class Wifi extends Activity {
 		mainText.setText("Scanning for WiFi networks...");
 		return super.onMenuItemSelected(featureId, item);
 	}
-
+	
+	protected void onPause() {
+		unregisterReceiver(receiverWifi);
+		super.onPause();
+	}
+	
+	protected void onResume() {
+		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		super.onResume();
+	}
+	
+    class WifiReceiver extends BroadcastReceiver {
+         
+        public void onReceive(Context c, Intent intent) {
+            sb = new StringBuilder();
+            wifiList = mainWifi.getScanResults(); 
+            sb.append("\n These are the " + wifiList.size() + "WiFi networks around you:" + "\n\n\n");
+             
+            for(int i = 0; i < wifiList.size(); i++){
+                sb.append("Network ");
+            	sb.append(new Integer(i+1).toString() + ".");
+            	sb.append("\n");
+                sb.append((wifiList.get(i)).toString());
+                sb.append("\n\n");
+            } 
+            mainText.setText(sb);  
+        }
+    }
 
 	private void connectWifi(final int position) {
-
-
+		
 		final int value = wifiList.size()-1 - position;
 		String Capabilities =  wifiList.get(value).capabilities;
 
@@ -99,28 +125,6 @@ public class Wifi extends Activity {
 		}
 
 	}
-
-
-	protected void onPause() {
-		unregisterReceiver(receiverWifi);
-		super.onPause();
-	}
-
-	protected void onResume() {
-		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-		super.onResume();
-	}
-
-	class WifiReceiver extends BroadcastReceiver {
-		public void onReceive(Context c, Intent intent) {
-			sb = new StringBuilder();
-			wifiList = mainWifi.getScanResults();
-			for(int i = 0; i < wifiList.size(); i++){
-				sb.append(new Integer(i+1).toString() + ".");
-				sb.append((wifiList.get(i)).toString());
-				sb.append("\\n");
-			}
-			mainText.setText(sb);
-		}
-	}
+	
+	
 }
