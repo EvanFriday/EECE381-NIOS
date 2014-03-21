@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainMenu extends Activity {
-	Button to_map,to_map_select,to_help;
+	Button to_map, to_map_select, to_help;
 	TextView map_selected;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,6 @@ public class MainMenu extends Activity {
         		}
         	}
 		});
-
-
-		
-       
-    }
-	//TODO: function to setcontent view
-
+	}
+	// TODO: function to setcontent view
 }
