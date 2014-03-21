@@ -8,6 +8,7 @@
     <string name="view_map">View Map</string>
     <string name="back_button">Back</string>
     <string name="to_map">Go To Map</string>
+    <string name="download_map">Download Map</string>
     <string name="to_map_select">Select a Map</string>
     <string name="to_help">Help</string>
     <string name="selected_map">No Map Currently Selected</string>
