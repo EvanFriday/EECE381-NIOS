@@ -40,13 +40,38 @@ public class Wifi extends Activity {
 	WifiReceiver receiverWifi;
 	List<ScanResult> wifiList;
 	StringBuilder sb = new StringBuilder();
-	
-	
+
+
 
 	public void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi_connection);
-	} 
+		
+		mainText = (TextView) findViewById(R.id.help_view_1);
+		
+		mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+
+
+		if (mainWifi.isWifiEnabled() == false)
+		{   
+			Toast.makeText(getApplicationContext(), "WiFi is currently disabled.  Please wait while it is enabled.", 
+					Toast.LENGTH_LONG).show();
+			mainWifi.setWifiEnabled(true);
+			Toast.makeText(getApplicationContext(), "WiFi is has been enabled.", 
+					Toast.LENGTH_LONG).show();
+		} 
+
+		// wifi scaned value broadcast receiver 
+		receiverWifi = new WifiReceiver();
+
+		// Register broadcast receiver 
+		// Broacast receiver will automatically call when number of wifi connections changed
+		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		mainWifi.startScan();
+		mainText.setText("Starting Scan...");
+	}
+
 
 	private void connectWifi(final int position) {
 
