@@ -60,6 +60,12 @@ public class MapView extends View {
 	public void onDraw(Canvas canvas, Map map, String startID, String endID){
 		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
 		
+		int imgWidth = this.window_width;
+		int imgHeight = this.window_height;
+		
+		float scaleX = imgWidth / map.getMapWidth();
+		float scaleY = imgHeight / map.getMapHeight();
+		
 		Paint paint = new Paint();
 		paint.setColor(Color.WHITE);
 		paint.setStrokeWidth(1);
@@ -71,7 +77,12 @@ public class MapView extends View {
 		Vector<Coord> Path= map.getShortestPathCoords(startNode, endNode, false);
 		
 		for(int i=1;i< Path.size();i++){
-			canvas.drawLine(Path.elementAt(i-1).getX(), Path.elementAt(i-1).getY(), Path.elementAt(i).getX(), Path.elementAt(i).getY(), paint);
+			int startx = (int)(Path.elementAt(i-1).getX() * scaleX);
+			int starty = (int)(Path.elementAt(i-1).getY() * scaleY);
+			int endx = (int)(Path.elementAt(i).getX() * scaleX);
+			int endy = (int)(Path.elementAt(i).getY() * scaleY);
+			
+			canvas.drawLine(startx, starty, endx, endy, paint);
 		}
 		
 	}
