@@ -19,6 +19,8 @@
     <string name="help_text_2_view">help text for two</string>
     <string name="help_text_3">Question3</string>
     <string name="help_text_3_view">help text for three</string>
+    <string name="wifi_1_view">wifi button</string>
+    <string name="wifi_1">Click to choose a WiFi network.</string>
     <string name="pulldown">Pulldown For Location Select</string>
 
 
