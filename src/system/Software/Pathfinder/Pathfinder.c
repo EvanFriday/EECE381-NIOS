@@ -5,9 +5,12 @@
 #include <system.h>
 
 int main() {
-	int i;
 	unsigned char data;
 	unsigned char parity;
+	char *name;
+	char *xml = ".xml";
+	char *jpeg = ".jpeg";
+	char filename[10];
 	sdcard card;
 
 	//initializing sdcard
@@ -17,13 +20,24 @@ int main() {
 
 	printf("UART Initialization\n");
 	alt_up_rs232_dev* uart = alt_up_rs232_open_dev(RS232_0_NAME);
-	printf("Clearing read buffer to start\n");
+	printf("Clearing read buffer to start\n\n");
 	while (alt_up_rs232_get_used_space_in_read_FIFO(uart)) {
 		alt_up_rs232_read_data(uart, &data, &parity);
 	}
 
+	printf("Reading Name of the Map Data...\n");
+	name = readsendname("name.txt", uart);
+	printf("Name of the Data is %s\n", name);
+
 	printf("Sending the message to the Middleman\n");
-	readsendfile("nodes.xml", uart);
+	strcpy(filename, name);
+	strcat(filename, xml);
+	printf("Sending %s\n", filename);
+	readsendfile(filename, uart);
+	strcpy(filename, name);
+	strcat(filename, jpeg);
+	printf("Sending %s\n", filename);
+	readsendfile(filename, uart);
 
 	printf("\n");
 	printf("Message Echo Complete\n");

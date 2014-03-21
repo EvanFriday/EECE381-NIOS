@@ -36,3 +36,23 @@ void readsendfile(char* name, alt_up_rs232_dev *uart) {
 	alt_up_sd_card_fclose(handle);
 }
 
+char* readsendname(char* name, alt_up_rs232_dev *uart) {
+	int handle;
+	int i = 0;
+	char temp_sdread = 1;
+	char *temp_string = malloc(sizeof(char) * 6);
+
+	handle = alt_up_sd_card_fopen(name, 0);
+	while (temp_sdread != -1) {
+		temp_sdread = alt_up_sd_card_read(handle);
+		temp_string[i] = temp_sdread;
+		i++;
+		alt_up_rs232_write_data(uart, temp_sdread);
+		while (alt_up_rs232_get_available_space_in_write_FIFO(uart) < 10)
+			;
+	}
+	temp_string[5] = '\0';
+	alt_up_sd_card_fclose(handle);
+
+	return temp_string;
+}
