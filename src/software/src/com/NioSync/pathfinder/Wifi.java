@@ -46,7 +46,25 @@ public class Wifi extends Activity {
             setContentView(R.layout.wifi_connection);
         } 
         
+        private void connectWifi(final int position) {
         
+        	
+        	final int value = wifiList.size()-1 - position;
+        	String Capabilities =  wifiList.get(value).capabilities;
+        	
+        	if(Capabilities.contains("WPA")) {
+        		
+        	}
+        	
+        	else if(Capabilities.contains("WEP")){
+        		
+        	}
+        	
+        	else {
+        		
+        	}
+                	
+        }
 
         public boolean onCreateOptionsMenu(Menu menu) {
             menu.add(0, 0, 0, "Refresh");
