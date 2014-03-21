@@ -24,6 +24,8 @@
     <string name="pulldown">Pulldown For Location Select</string>
     <string name="wifi_2_view">wifi button 2</string>
     <string name="wifi_2">Join a WiFi network via QR Code.</string>
+    <string name="wifi_3_view">wifi button 2</string>
+    <string name="wifi_3">Join a WiFi network via NFC.</string>
 
 
 </resources>
