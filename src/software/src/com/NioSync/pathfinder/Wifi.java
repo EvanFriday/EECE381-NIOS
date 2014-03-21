@@ -40,6 +40,8 @@ public class Wifi extends Activity {
 	WifiReceiver receiverWifi;
 	List<ScanResult> wifiList;
 	StringBuilder sb = new StringBuilder();
+	
+	
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
