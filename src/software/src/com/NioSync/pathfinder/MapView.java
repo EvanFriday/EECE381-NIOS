@@ -19,6 +19,7 @@ import android.widget.ImageView;
 public class MapView extends View {
 	Bitmap bitmaps;
 	Bitmap scaled_bitmap;
+	Canvas canvas;
 	int window_height;
 	int window_width;
 	public MapView(Context context) {
@@ -29,9 +30,10 @@ public class MapView extends View {
 	
 	public MapView(Context context, AttributeSet attrs) {
 		super(context, attrs);	
-		
+		canvas = new Canvas();
 		this.bitmaps = BitmapFactory.decodeStream(getResources().openRawResource(R.raw.mcld1));	
 	}
+	
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -54,11 +56,16 @@ public class MapView extends View {
 
 	@Override
 	public void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
 		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
+		
 	}
 	
-	public void onDraw(Canvas canvas, Map map, String startID, String endID){
-		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
+	public void draw(Canvas canvas, Map map, String startID, String endID){
+		Log.d("FUNCTION ENTER","draw" );
+		
+		
+		//canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
 		
 		int imgWidth = this.window_width;
 		int imgHeight = this.window_height;
@@ -67,9 +74,9 @@ public class MapView extends View {
 		float scaleY = imgHeight / map.getMapHeight();
 		
 		Paint paint = new Paint();
-		paint.setColor(Color.WHITE);
-		paint.setStrokeWidth(1);
-		
+		paint.setColor(Color.RED);
+		paint.setStrokeWidth(20);
+		canvas.drawLine(0, 0, 100, 200, paint);
 		Node startNode = map.getNodeFromID(startID);
 		
 		Node endNode = map.getNodeFromID(endID);
@@ -83,8 +90,9 @@ public class MapView extends View {
 			int endy = (int)(Path.elementAt(i).getY() * scaleY);
 			
 			canvas.drawLine(startx, starty, endx, endy, paint);
-		}
 		
+		}
+		Log.d("FUNCTION LEAVE","draw" );
 	}
 	
 

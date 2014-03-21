@@ -4,6 +4,9 @@ package com.NioSync.pathfinder;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -23,17 +26,26 @@ public class PathFinder extends Activity {
 
 	private String start_loc=null;
 	private String dest_loc=null;
+	private String start_id;
+	private String dest_id;
 	private ImageButton pulldown;
 	private LinearLayout pulldown_container;
 	private RelativeLayout pathfinder_rel;
 	private Map map_object;
+	private MapView map_view;
+	private Canvas canvas;
 	private Spinner start_loc_spin,dest_loc_spin;
 	private ArrayAdapter<String> start_adapt,dest_adapt;
+	
     @Override	
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_finder);
+        map_view = (MapView) findViewById(R.id.map_container);
+        Bitmap bitmap = BitmapFactory.decodeStream(getResources().openRawResource(R.raw.mcld1));
+        canvas = new Canvas(bitmap);
         
+        //map_view.draw(map_view.canvas);
         map_object=Map.loadMapFromFile(null);
 
         pulldown = (ImageButton) findViewById(R.id.pulldown);
@@ -48,7 +60,11 @@ public class PathFinder extends Activity {
         			String name = text.getText().toString();
         			start_loc = name;
         	        Log.d("START LOCATION SET", start_loc);
-        	}
+        			start_id = map_object.getNodeIDFromName(start_loc);
+        	        
+        	        map_view.draw(canvas, map_object, start_id, dest_id);
+        	        //map_view.invalidate();
+          	}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
@@ -62,6 +78,10 @@ public class PathFinder extends Activity {
         			String name = text.getText().toString();
         			dest_loc = name;
         			Log.d("DEST LOCATION SET", dest_loc);
+        			dest_id = map_object.getNodeIDFromName(dest_loc);
+        			map_view.draw(canvas, map_object, start_id, dest_id);
+        	        //map_view.invalidate();
+        			//mapview.refreshDrawableState();
         	}
 
 			@Override
