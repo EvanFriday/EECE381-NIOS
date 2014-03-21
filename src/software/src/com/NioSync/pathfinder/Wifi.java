@@ -1,8 +1,10 @@
 package com.NioSync.pathfinder;
 
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -30,8 +32,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+
 public class Wifi extends Activity {
-        TextView mainText;
+        
+	TextView mainText;
         WifiManager mainWifi;
         WifiReceiver receiverWifi;
         List<ScanResult> wifiList;
@@ -41,6 +45,8 @@ public class Wifi extends Activity {
         	super.onCreate(savedInstanceState);
             setContentView(R.layout.wifi_connection);
         } 
+        
+        
 
         public boolean onCreateOptionsMenu(Menu menu) {
             menu.add(0, 0, 0, "Refresh");
