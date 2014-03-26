@@ -46,3 +46,4 @@ public class MainMenu extends Activity {
 		});
 	}
 	// TODO: function to setcontent view
+}
