@@ -27,6 +27,8 @@
     <string name="wifi_2">Join a WiFi network via QR Code.</string>
     <string name="wifi_3_view">wifi button 2</string>
     <string name="wifi_3">Join a WiFi network via NFC.</string>
-
+    <string name="progress_1">Downloading XML file...</string>
+    <string name="progress_2">Downloading JPEG file...</string>
+    <string name="progress_3">Complete!</string>
 
 </resources>

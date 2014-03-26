@@ -1,9 +1,6 @@
 package com.NioSync.pathfinder;
 
-
 import java.util.List;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -12,26 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.net.wifi.WifiConfiguration;
-import android.net.wifi.WifiEnterpriseConfig;
-import android.net.wifi.WpsInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.text.InputType;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
-
 
 public class Wifi extends Activity {
 
@@ -40,8 +22,6 @@ public class Wifi extends Activity {
 	WifiReceiver receiverWifi;
 	List<ScanResult> wifiList;
 	StringBuilder sb = new StringBuilder();
-
-
 
 	public void onCreate(Bundle savedInstanceState) {
 
