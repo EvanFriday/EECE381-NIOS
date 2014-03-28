@@ -2,6 +2,8 @@ package com.NioSync.pathfinder;
 
 
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -14,7 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public class PathFinder extends Activity {
-
+	//test
+	public  Map mapTest;
+	public String startID="r101";
+	public String endID="r105";
+	public MapView mapView;
+	
+	
 	private EditText start_loc,dest_loc;
 	private ImageView map;
 	private ImageButton pulldown;
@@ -25,7 +33,9 @@ public class PathFinder extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_finder);
        pulldown = (ImageButton) findViewById(R.id.pulldown);
- 
+       
+       //create map object
+       mapTest= new Map();
        
        pulldown.setOnClickListener(new View.OnClickListener() {
 		
@@ -49,6 +59,22 @@ public class PathFinder extends Activity {
     public void showHideTools(){
         this.pulldown_container = (LinearLayout) findViewById(R.id.linearLayout_pulldowncontainer);
     	this.pathfinder_rel = (RelativeLayout) findViewById(R.id.relativelayout_pathfinder);
+    	
+    	//****************update map***********************
+    	//create a new path
+    	Coord position1= new Coord(0,0);
+    	Coord position2= new Coord(400,400);
+    	Vector<Coord> newPath = new Vector<Coord>();
+    	newPath.add(position1);
+    	newPath.add(position2);
+    	//start updating
+    	this.mapView = (MapView) findViewById(R.id.map_container);
+    	//mapView.setData( mapTest.loadMapFromFile("d") , startID, endID, true);
+    	//mapView.setLine(0, 0, 400, 400);
+    	mapView.setPath(newPath, true);
+    	mapView.invalidate();
+    	//*************************************************
+    	
         if(this.pulldown_container.getVisibility()==View.VISIBLE){
     		
         	this.pulldown_container.setVisibility(View.GONE);
