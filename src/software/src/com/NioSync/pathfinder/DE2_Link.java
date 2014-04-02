@@ -31,7 +31,7 @@ public class DE2_Link extends Activity {
 
 	public void openSocket(View view) {
 		DE2_Class app = (DE2_Class) getApplication();
-		TextView msgbox = (TextView) findViewById(R.id.error_message_box);
+		TextView msgbox = (TextView) findViewById(R.id.Transfer_Progress);
 
 		// Make sure the socket is not already opened
 

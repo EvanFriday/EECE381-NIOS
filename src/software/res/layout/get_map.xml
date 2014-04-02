@@ -29,6 +29,6 @@
         android:layout_below="@+id/Transfer_Progress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:text="@string/Re-Download" />
+        android:text="@string/Re_Download" />
 
 </RelativeLayout>
