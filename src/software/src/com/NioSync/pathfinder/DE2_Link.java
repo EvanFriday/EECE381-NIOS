@@ -23,12 +23,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class De2Link extends Activity {
-	De2Link(De2 target) {
+public class DE2_Link extends Activity {
+	
+	public void openSocket(View view) {
 		
 	}
 	
-	void getMapImages() {
+	public void OnReceive(View view){
 		
 	}
 	
