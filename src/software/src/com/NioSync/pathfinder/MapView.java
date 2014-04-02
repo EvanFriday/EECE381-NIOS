@@ -1,7 +1,5 @@
 package com.NioSync.pathfinder;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Vector;
 
 import android.content.Context;
@@ -11,10 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.ImageView;
 
 public class MapView extends View {
 	Bitmap bitmaps;
