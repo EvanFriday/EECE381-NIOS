@@ -53,6 +53,20 @@ private ImageView map;
 						String name = text.getText().toString();
 						start_loc = name;
 						Log.d("START LOCATION SET", start_loc);
+						
+						//****************update map***********************
+				    	Node startNode = map_object.getNodeFromName(start_loc);
+				    	Node endNode = map_object.getNodeFromName(dest_loc);
+
+				    	Vector<Coord> newPath=map_object.getShortestPathCoords(startNode, endNode, false);
+
+				    	//start updating
+				    	mapView = (MapView) findViewById(R.id.map_container);
+				    	//mapView.setData( mapTest.loadMapFromFile("d") , startID, endID, true);
+				    	//mapView.setLine(0, 0, 400, 400);
+				    	mapView.setPath(newPath, true);
+				    	mapView.invalidate();
+				    	//*************************************************
 					}
 
 					@Override
@@ -69,6 +83,20 @@ private ImageView map;
 						String name = text.getText().toString();
 						dest_loc = name;
 						Log.d("DEST LOCATION SET", dest_loc);
+						
+						//****************update map***********************
+				    	Node startNode = map_object.getNodeFromName(start_loc);
+				    	Node endNode = map_object.getNodeFromName(dest_loc);
+
+				    	Vector<Coord> newPath=map_object.getShortestPathCoords(startNode, endNode, false);
+
+				    	//start updating
+				    	mapView = (MapView) findViewById(R.id.map_container);
+				    	//mapView.setData( mapTest.loadMapFromFile("d") , startID, endID, true);
+				    	//mapView.setLine(0, 0, 400, 400);
+				    	mapView.setPath(newPath, true);
+				    	mapView.invalidate();
+				    	//*************************************************
 					}
 
 					@Override
