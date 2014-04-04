@@ -8,7 +8,7 @@
     <string name="view_map">View Map</string>
     <string name="back_button">Back</string>
     <string name="to_map">Go To Map</string>
-    <string name="to_map_select">Select a Map</string>
+   <string name="to_map_select">Select a Map</string>
     <string name="to_help">Help</string>
     <string name="selected_map">No Map Currently Selected</string>
     <string name="title_activity_map">MapActivity</string>
@@ -19,7 +19,15 @@
     <string name="help_text_2_view">help text for two</string>
     <string name="help_text_3">Question3</string>
     <string name="help_text_3_view">help text for three</string>
+    <string name="wifi_1_view">wifi button</string>
+    <string name="wifi_1">Manually join a WiFi network.</string>
     <string name="pulldown">Pulldown For Location Select</string>
+    <string name="wifi_2_view">wifi button 2</string>
+    <string name="wifi_2">Join a WiFi network via QR Code.</string>
+    <string name="wifi_3_view">wifi button 2</string>
+    <string name="wifi_3">Join a WiFi network via NFC.</string>
+    <string name="download_map">Download Map</string>
+    
 
 
 </resources>

@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainMenu extends Activity {
-	Button to_map,to_map_select,to_help;
+	Button to_map, to_map_select, to_help;
 	TextView map_selected;
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,7 @@ public class MainMenu extends Activity {
         ListView menuList = (ListView) findViewById(R.id.listview_menu);
         String [] menu_items = {
         		getResources().getString(R.string.to_map),
+        		getResources().getString(R.string.download_map),
         		getResources().getString(R.string.to_map_select),
         		getResources().getString(R.string.to_help)
         };
@@ -37,15 +38,12 @@ public class MainMenu extends Activity {
         			
         		}
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
-        			//TODO: setcontentview to help page.
+        			//TODO: Start activity for help
+        			startActivity(new Intent(MainMenu.this,Help.class));
+        			
         		}
         	}
 		});
-
-
-		
-       
-    }
-	//TODO: function to setcontent view
-
+	}
+	// TODO: function to setcontent view
 }
