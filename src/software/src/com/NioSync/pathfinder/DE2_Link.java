@@ -1,30 +1,17 @@
 package com.NioSync.pathfinder;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Writer;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.example.ece381.MainActivity;
-import com.example.ece381.MyApplication;
-import com.example.ece381.R;
-import com.example.ece381.MainActivity.SocketConnect;
-import com.example.ece381.MainActivity.TCPReadTimerTask;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,9 +24,11 @@ public class DE2_Link extends Activity {
 		// This call will result in better error messages if you
 		// try to do things in the wrong thread.
 
-		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-				.detectDiskReads().detectDiskWrites().detectNetwork()
-				.penaltyLog().build());
+		/*
+		 * StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+		 * .detectDiskReads().detectDiskWrites().detectNetwork()
+		 * .penaltyLog().build());
+		 */
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.get_map);
@@ -50,11 +39,11 @@ public class DE2_Link extends Activity {
 		// Set up a timer task. We will use the timer to check the
 		// input queue every 500 ms
 
-/*		TCPReadTimerTask tcp_task = new TCPReadTimerTask();
+		TCPReadTimerTask tcp_task = new TCPReadTimerTask();
 		Timer tcp_timer = new Timer();
-		tcp_timer.schedule(tcp_task, 3000, 500);*/
+		tcp_timer.schedule(tcp_task, 3000, 500);
 	}
-	
+
 	public void openSocket(View view) {
 		DE2_Class app = (DE2_Class) getApplication();
 		TextView msgbox = (TextView) findViewById(R.id.Transfer_Progress);
@@ -131,8 +120,52 @@ public class DE2_Link extends Activity {
 		return port;
 	}
 
-	void getMapNodes() {
+	public class TCPReadTimerTask extends TimerTask {
+		public void run() {
+			DE2_Class app = (DE2_Class) getApplication();
+			if (app.sock != null && app.sock.isConnected()
+					&& !app.sock.isClosed()) {
 
+				try {
+					InputStream in = app.sock.getInputStream();
+
+					// See if any bytes are available from the Middleman
+
+					int bytes_avail = in.available();
+					if (bytes_avail > 0) {
+
+						// If so, read them in and create a sring
+
+						byte buf[] = new byte[bytes_avail];
+						in.read(buf);
+
+						final String s = new String(buf, 0, bytes_avail,
+								"US-ASCII");
+
+						// As explained in the tutorials, the GUI can not be
+						// updated in an asyncrhonous task. So, update the GUI
+						// using the UI thread.
+
+						String filename = "nodes.xml";
+						FileOutputStream outputStream;
+
+						outputStream = openFileOutput(filename,
+								Context.MODE_PRIVATE);
+						outputStream.write(s.getBytes());
+						outputStream.close();
+
+						runOnUiThread(new Runnable() {
+							public void run() {
+								EditText et = (EditText) findViewById(R.id.Transfer_Progress);
+								et.setText(s);
+							}
+						});
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	void getCurrentLocation() {
