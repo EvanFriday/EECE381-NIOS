@@ -62,6 +62,9 @@ public class PathFinder extends Activity {
     	this.pathfinder_rel = (RelativeLayout) findViewById(R.id.relativelayout_pathfinder);
     	
     	//****************update map***********************
+    	//Node startNode = myMap.getNodeFromName(start_loc);
+    	
+    	//mapTest.getShortestPathCoords(startNode, endNode, false);
     	//create a new path
     	Coord position1= new Coord(350,400);
     	Coord position2= new Coord(350,340);
