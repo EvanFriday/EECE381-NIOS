@@ -67,7 +67,7 @@
 
     <ImageButton
         android:id="@+id/pulldown"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/pulldown"
         android:src="@drawable/pulldown_bar"

@@ -32,6 +32,7 @@ public class PathFinder extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path_finder);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
        pulldown = (ImageButton) findViewById(R.id.pulldown);
        
        //create map object
@@ -62,11 +63,13 @@ public class PathFinder extends Activity {
     	
     	//****************update map***********************
     	//create a new path
-    	Coord position1= new Coord(0,0);
-    	Coord position2= new Coord(400,400);
+    	Coord position1= new Coord(350,400);
+    	Coord position2= new Coord(350,340);
+    	Coord position3= new Coord(350,285);
     	Vector<Coord> newPath = new Vector<Coord>();
     	newPath.add(position1);
     	newPath.add(position2);
+    	newPath.add(position3);
     	//start updating
     	this.mapView = (MapView) findViewById(R.id.map_container);
     	//mapView.setData( mapTest.loadMapFromFile("d") , startID, endID, true);
