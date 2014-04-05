@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class DE2_Link extends Activity {
@@ -35,6 +36,7 @@ public class DE2_Link extends Activity {
 
 		EditText et = (EditText) findViewById(R.id.Transfer_Progress);
 		et.setKeyListener(null);
+		ProgressBar progress_bar = (ProgressBar) findViewById(R.id.Map_DL_Progress_Bar);
 
 		// Set up a timer task. We will use the timer to check the
 		// input queue every 500 ms
