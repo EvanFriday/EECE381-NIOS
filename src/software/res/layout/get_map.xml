@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:ems="10" />
+        android:ems="10"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/button1"
@@ -29,6 +30,6 @@
         android:layout_below="@+id/Transfer_Progress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
-        android:text="@string/Re_Download" />
+        android:text="@string/download_button" />
 
 </RelativeLayout>

@@ -30,7 +30,7 @@
     <string name="progress_1">Downloading XML file...</string>
     <string name="progress_2">Downloading JPEG file...</string>
     <string name="progress_3">Complete!</string>
-    <string name="Re_Download">Re-Download</string>
+    <string name="download_button">Download</string>
     
 
 </resources>

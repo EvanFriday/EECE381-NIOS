@@ -42,6 +42,11 @@ public class MainMenu extends Activity {
         			startActivity(new Intent(MainMenu.this,Help.class));
         			
         		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.download_map))){
+        			//TODO: Start activity for help
+        			startActivity(new Intent(MainMenu.this,DE2_Link.class));
+        			
+        		}
         	}
 		});
 	}
