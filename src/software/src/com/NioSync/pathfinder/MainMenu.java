@@ -67,12 +67,16 @@ public class MainMenu extends Activity {
         			
         		}
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
-        			//TODO: Start activity for help
-        			startActivity(new Intent(MainMenu.this,Help.class));
         			
+        			startActivity(new Intent(MainMenu.this,Help.class));
+        		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.download_map))){
+        			
+        			startActivity(new Intent(MainMenu.this,Wifi.class));
         		}
         	}
 		});
 	}
-	// TODO: function to setcontent view
+	
+	
 }

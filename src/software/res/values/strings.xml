@@ -28,5 +28,6 @@
     <string name="wifi_3">Join a WiFi network via NFC.</string>
     <string name="download_map">Download Map</string>
     <string name="title_activity_zoom">ZoomActivity</string>
+    <string name="title_activity_manual_connection">ManualConnection</string>
 
 </resources>

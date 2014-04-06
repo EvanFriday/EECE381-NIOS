@@ -42,8 +42,8 @@
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
             android:name="com.NioSync.pathfinder.MainMenu"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,12 +62,18 @@
         </activity>
         <activity
             android:name="com.NioSync.pathfinder.Wifi"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:parentActivityName="com.NioSync.pathfinder.MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.NioSync.pathfinder.ManualConnection"
+            android:label="@string/title_activity_manual_connection" 
+            android:parentActivityName="com.NioSync.pathfinder.Wifi">
         </activity>
     </application>
 

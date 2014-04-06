@@ -5,7 +5,7 @@
     tools:context=".Wifi" >
 
     <Button
-        android:id="@+id/Button02"
+        android:id="@+id/QRconnection"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,21 +14,21 @@
         android:text="@string/wifi_2" />
 
     <Button
-        android:id="@+id/Button03"
+        android:id="@+id/NFCconnection"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Button02"
+        android:layout_below="@+id/QRconnection"
         android:text="@string/wifi_3" />
 
     <Button
-        android:id="@+id/Button01"
+        android:id="@+id/MNLconnection"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/Button03"
+        android:layout_below="@+id/NFCconnection"
         android:text="@string/wifi_1" />
 
 </RelativeLayout> 

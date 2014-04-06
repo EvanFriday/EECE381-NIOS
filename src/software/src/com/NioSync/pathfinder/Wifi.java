@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -37,7 +38,7 @@ public class Wifi extends Activity {
 
 	TextView mainText;
 	WifiManager mainWifi;
-	WifiReceiver receiverWifi;
+	//WifiReceiver receiverWifi;
 	List<ScanResult> wifiList;
 	StringBuilder sb = new StringBuilder();
 
@@ -47,7 +48,19 @@ public class Wifi extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi_connection);
-
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		//activate manual connection button
+		Button b = (Button) findViewById(R.id.MNLconnection);
+        b.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Wifi.this, ManualConnection.class));
+			}
+        	
+        });
+/*
 		mainText = (TextView) findViewById(R.id.help_view_1);
 		mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -66,10 +79,11 @@ public class Wifi extends Activity {
 
 		mainWifi.startScan();
 		mainText.setText("Scanning for WiFi networks...");
+*/
 	}
-
+/*
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, 0, 0, "Refresh");
+		//menu.add(0, 0, 0, "Refresh");
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -79,13 +93,14 @@ public class Wifi extends Activity {
 		return super.onMenuItemSelected(featureId, item);
 	}
 
+	@Override
 	protected void onPause() {
-		unregisterReceiver(receiverWifi);
+		//unregisterReceiver(receiverWifi);
 		super.onPause();
 	}
-
+	@Override
 	protected void onResume() {
-		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		//registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 		super.onResume();
 	}
 
@@ -125,6 +140,6 @@ public class Wifi extends Activity {
 		}
 
 	}
-
+*/
 
 }
