@@ -77,5 +77,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@id/pulldown" />
+    
+    	<com.NioSync.pathfinder.MapView
+        android:id="@+id/expanded_image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -16,7 +16,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
-public class MapView extends View {
+public class MapView extends ImageView {
 	Bitmap bitmaps;
 	Bitmap scaled_bitmap;
 	int window_height;
@@ -40,6 +40,7 @@ public class MapView extends View {
 		super(context,null);
 		
 	}
+	
 	
 	public MapView(Context context, AttributeSet attrs) {
 		super(context, attrs);	

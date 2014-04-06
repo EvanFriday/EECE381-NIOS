@@ -6,14 +6,14 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
 
     <uses-feature android:name="android.hardware.wifi" />
-    <uses-permission 
-        android:required="true"
-        android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        android:required="true" />
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE"
         android:required="true" />
