@@ -51,11 +51,23 @@ public class Wifi extends Activity {
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		//activate QR code connection button
+		Button QRbutton = (Button) findViewById(R.id.QRconnection);
+		QRbutton.setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						startActivity(getPackageManager().getLaunchIntentForPackage("com.qrdroid.QRDroid"));
+					}
+		        	
+		});
+		
+		
 		//activate manual connection button
-		Button b = (Button) findViewById(R.id.MNLconnection);
-        b.setOnClickListener(new OnClickListener(){
+		Button MNLbutton = (Button) findViewById(R.id.MNLconnection);
+		MNLbutton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				//startActivity(getPackageManager().getLaunchIntentForPackage("com.qrdroid.QRDroid"));
 				startActivity(new Intent(Wifi.this, ManualConnection.class));
 			}
         	
@@ -80,7 +92,12 @@ public class Wifi extends Activity {
 		mainWifi.startScan();
 		mainText.setText("Scanning for WiFi networks...");
 */
+		
+		
 	}
+	
+	
+	
 /*
 	public boolean onCreateOptionsMenu(Menu menu) {
 		//menu.add(0, 0, 0, "Refresh");
