@@ -29,5 +29,8 @@
     <string name="download_map">Download Map</string>
     <string name="title_activity_zoom">ZoomActivity</string>
     <string name="title_activity_manual_connection">ManualConnection</string>
+    <string name="connect">Connect</string>
+    <string name="label_port">Port :</string>
+    <string name="label_ip">IP :</string>
 
 </resources>
