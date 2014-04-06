@@ -46,6 +46,8 @@ public class PathFinder extends Activity {
 		setContentView(R.layout.activity_path_finder);
 
 		map_object = Map.loadMapFromFile(null);
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		//***************zoom************
 		mapView = (MapView) findViewById(R.id.map_container);
@@ -207,10 +209,15 @@ public class PathFinder extends Activity {
 	    //final ImageView expandedImageView = (ImageView) findViewById(R.id.expanded_image);
 	    final MapView expandedImageView = (MapView) findViewById(R.id.expanded_image);
 	    expandedImageView.setPath(newPath, true);
+	    //*******edit
+	    
+	    
+	    
+	    //**********************************
 	    expandedImageView.invalidate();
 	    
 	    //expandedImageView.setImageResource(imageResId);
-	    expandedImageView.setImageBitmap(thumbView.getDrawingCache());
+	    //expandedImageView.setImageBitmap(thumbView.getDrawingCache());
 
 	    // Calculate the starting and ending bounds for the zoomed-in image.
 	    // This step involves lots of math. Yay, math.
@@ -224,8 +231,7 @@ public class PathFinder extends Activity {
 	    // bounds, since that's the origin for the positioning animation
 	    // properties (X, Y).
 	    thumbView.getGlobalVisibleRect(startBounds);
-	    findViewById(R.id.relativelayout_pathfinder)
-	            .getGlobalVisibleRect(finalBounds, globalOffset);
+	    findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
 	    startBounds.offset(-globalOffset.x, -globalOffset.y);
 	    finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
@@ -267,14 +273,15 @@ public class PathFinder extends Activity {
 	    // Construct and run the parallel animation of the four translation and
 	    // scale properties (X, Y, SCALE_X, and SCALE_Y).
 	    AnimatorSet set = new AnimatorSet();
+	    
 	    set
 	            .play(ObjectAnimator.ofFloat(expandedImageView, View.X,
 	                    startBounds.left, finalBounds.left))
 	            .with(ObjectAnimator.ofFloat(expandedImageView, View.Y,
 	                    startBounds.top, finalBounds.top))
-	            .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_X,
-	            startScale, 1f)).with(ObjectAnimator.ofFloat(expandedImageView,
-	                    View.SCALE_Y, startScale, 1f));
+	            .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_X, startScale, 1f))
+	            .with(ObjectAnimator.ofFloat(expandedImageView, View.SCALE_Y, startScale, 1f));
+	    
 	    set.setDuration(mShortAnimationDuration);
 	    set.setInterpolator(new DecelerateInterpolator());
 	    set.addListener(new AnimatorListenerAdapter() {
@@ -290,7 +297,7 @@ public class PathFinder extends Activity {
 	    });
 	    set.start();
 	    mCurrentAnimator = set;
-
+	    
 	    // Upon clicking the zoomed-in image, it should zoom back down
 	    // to the original bounds and show the thumbnail instead of
 	    // the expanded image.

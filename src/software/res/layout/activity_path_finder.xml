@@ -30,9 +30,9 @@
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="wrap_content"
-                android:layout_weight="7"
+                android:layout_weight="6"
                 android:layout_height="match_parent"
-                android:ems="10"
+                android:ems="9"
                 android:hint="@string/search_hint"
                 android:inputType="number" >
             </EditText>
@@ -41,7 +41,7 @@
                 android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                 android:layout_weight="2"
+                 android:layout_weight="3"
                 android:text="@string/search_button" />
 
         </LinearLayout>
@@ -78,13 +78,19 @@
         android:layout_alignParentRight="true"
         android:layout_below="@id/pulldown" />
     
-    	<com.NioSync.pathfinder.MapView
+    
+    <FrameLayout
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+        
+    <com.NioSync.pathfinder.MapView
         android:id="@+id/expanded_image"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
         android:visibility="invisible" />
+    
+    </FrameLayout>
 
 </RelativeLayout>
