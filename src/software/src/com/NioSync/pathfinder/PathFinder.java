@@ -215,9 +215,6 @@ public class PathFinder extends Activity {
 	    
 	    //**********************************
 	    expandedImageView.invalidate();
-	    
-	    //expandedImageView.setImageResource(imageResId);
-	    //expandedImageView.setImageBitmap(thumbView.getDrawingCache());
 
 	    // Calculate the starting and ending bounds for the zoomed-in image.
 	    // This step involves lots of math. Yay, math.
