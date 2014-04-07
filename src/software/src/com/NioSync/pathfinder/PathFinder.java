@@ -8,6 +8,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -50,6 +53,9 @@ public class PathFinder extends Activity {
 		map_object = Map.loadMapFromFile(null);
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		//************search action bar************
+		
 		
 		//***************zoom************
 		mapView = (MapView) findViewById(R.id.map_container);
@@ -144,10 +150,18 @@ public class PathFinder extends Activity {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.path_finder, menu);
+	    
+	 // Associate searchable configuration with the SearchView
+	    SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    SearchView searchView =(SearchView) menu.findItem(R.id.action_search).getActionView();
+	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    
 	    return super.onCreateOptionsMenu(menu);
 	}
-	
-	
+
+	//**********************************************
+	//show action bar items
+	//**********************************************
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
@@ -158,9 +172,7 @@ public class PathFinder extends Activity {
 	        case R.id.action_settings:
 	            
 	            return true;
-	        case R.id.action_location:
-	        	
-	        	return true;
+	        
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
