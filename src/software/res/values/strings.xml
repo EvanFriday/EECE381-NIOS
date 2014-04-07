@@ -32,6 +32,7 @@
     <string name="connect">Connect</string>
     <string name="label_port">Port :</string>
     <string name="label_ip">IP :</string>
-    <string name="FragText">Question and Answers: \n 1. How do I find a path between two room? \n \n Go to Map from the main menu and then select the two room that you are at. \n \n 2. How do I use the application? \n \n First download the map from the download tab located in the main menu. Then choose go to map in the main menu to access the Map. \n \n \n \n \n ABOUT : \n The android application Pathfinder is created by a group of UBC student. The product is for non economic use.</string>
+    <string name="FragText">Question and Answers: \n \n 1. How do I find a path between two room? \n \n Go to Map from the main menu and then select the two room that you are at. \n \n 2. How do I use the application? \n \n First download the map from the download tab located in the main menu. Then choose go to map in the main menu to access the Map. \n \n \n \n \n ABOUT : \n \n The android application Pathfinder is created by a group of UBC student. The product is for non commercial use.</string>
+    <string name="action_search">Search</string>
 
 </resources>
