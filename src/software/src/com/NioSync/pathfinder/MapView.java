@@ -8,10 +8,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
-public class MapView extends View {
+public class MapView extends ImageView {
 	Bitmap bitmaps;
 	Bitmap scaled_bitmap;
 	int window_height;
@@ -26,6 +28,10 @@ public class MapView extends View {
 	int starty=0;
 	int endx=0;
 	int endy=0;
+	int scaleX=1;
+	int scaleY=1;
+	
+	
 	//Find Path
 	Vector<Coord> Path;
 	
@@ -44,6 +50,20 @@ public class MapView extends View {
 		
 		this.bitmaps = BitmapFactory.decodeStream(getResources().openRawResource(R.raw.mcld1));	
 	}
+	
+	 @Override 
+	    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
+	         Drawable d = getDrawable();
+
+	         if(d!=null){
+	                 // ceil not round - avoid thin vertical gaps along the left/right edges
+	                 int width = MeasureSpec.getSize(widthMeasureSpec);
+	                 int height = (int) Math.ceil((float) width * (float) d.getIntrinsicHeight() / (float) d.getIntrinsicWidth());
+	                 setMeasuredDimension(width, height);
+	         }else{
+	                 super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	         }
+	    }
 	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -105,23 +125,13 @@ public class MapView extends View {
 			
 
 			
-			if(Path.size()>=2){
-	/*			for(int i=1;i< Path.size();i++){
-					int startx = (int)(Path.elementAt(i-1).getX() * scaleX);
-					int starty = (int)(Path.elementAt(i-1).getY() * scaleY);
-					int endx = (int)(Path.elementAt(i).getX() * scaleX);
-					int endy = (int)(Path.elementAt(i).getY() * scaleY);
-					
-					canvas.drawLine(startx, starty, endx, endy, paint);
-				}*/
-				
-				
+			if(Path.size()>=2){	
 				
 				for(int i=1;i< Path.size();i++){
-					startx = (int)(Path.elementAt(i-1).getX());
-					starty = (int)(Path.elementAt(i-1).getY());
-					endx = (int)(Path.elementAt(i).getX());
-					endy = (int)(Path.elementAt(i).getY());
+					startx = (int)(Path.elementAt(i-1).getX()*scaleX);
+					starty = (int)(Path.elementAt(i-1).getY()*scaleY);
+					endx = (int)(Path.elementAt(i).getX()*scaleX);
+					endy = (int)(Path.elementAt(i).getY()*scaleY);
 					
 					canvas.drawLine(startx, starty, endx, endy, paint);
 				}

@@ -3,23 +3,20 @@ package com.NioSync.pathfinder;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Wifi extends Activity {
 
 	TextView mainText;
 	WifiManager mainWifi;
-	WifiReceiver receiverWifi;
+	//WifiReceiver receiverWifi;
 	List<ScanResult> wifiList;
 	StringBuilder sb = new StringBuilder();
 
@@ -27,7 +24,31 @@ public class Wifi extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi_connection);
-
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		//activate QR code connection button
+		Button QRbutton = (Button) findViewById(R.id.QRconnection);
+		QRbutton.setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View v) {
+						startActivity(getPackageManager().getLaunchIntentForPackage("com.qrdroid.QRDroid"));
+					}
+		        	
+		});
+		
+		
+		//activate manual connection button
+		Button MNLbutton = (Button) findViewById(R.id.MNLconnection);
+		MNLbutton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				//startActivity(getPackageManager().getLaunchIntentForPackage("com.qrdroid.QRDroid"));
+				startActivity(new Intent(Wifi.this, ManualConnection.class));
+			}
+        	
+        });
+/*
 		mainText = (TextView) findViewById(R.id.help_view_1);
 		mainWifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -46,10 +67,16 @@ public class Wifi extends Activity {
 
 		mainWifi.startScan();
 		mainText.setText("Scanning for WiFi networks...");
+*/
+		
+		
 	}
-
+	
+	
+	
+/*
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, 0, 0, "Refresh");
+		//menu.add(0, 0, 0, "Refresh");
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -59,13 +86,14 @@ public class Wifi extends Activity {
 		return super.onMenuItemSelected(featureId, item);
 	}
 
+	@Override
 	protected void onPause() {
-		unregisterReceiver(receiverWifi);
+		//unregisterReceiver(receiverWifi);
 		super.onPause();
 	}
-
+	@Override
 	protected void onResume() {
-		registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+		//registerReceiver(receiverWifi, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 		super.onResume();
 	}
 
@@ -105,6 +133,6 @@ public class Wifi extends Activity {
 		}
 
 	}
-
+*/
 
 }

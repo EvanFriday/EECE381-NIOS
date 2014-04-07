@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,9 +20,36 @@ public class MainMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        
+        final ImageView imagebutton_gotomap = (ImageView) findViewById(R.id.goToMap_menu);
+        imagebutton_gotomap.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN ) {
+					imagebutton_gotomap.setImageResource(R.raw.gotomap_press);
+					return true;
+		        }
+				else if(event.getAction() == MotionEvent.ACTION_UP ){
+					imagebutton_gotomap.setImageResource(R.raw.gotomap);
+					startActivity(new Intent(MainMenu.this,PathFinder.class));
+					return true;
+				}
+				else{
+					imagebutton_gotomap.setImageResource(R.raw.gotomap);
+					return false;
+				}
+				
+			}
+		});
+        imagebutton_gotomap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	startActivity(new Intent(MainMenu.this,PathFinder.class));
+            }
+        });
+        
         ListView menuList = (ListView) findViewById(R.id.listview_menu);
         String [] menu_items = {
-        		getResources().getString(R.string.to_map),
+        		//getResources().getString(R.string.to_map),
         		getResources().getString(R.string.download_map),
         		getResources().getString(R.string.to_map_select),
         		getResources().getString(R.string.to_help)
@@ -38,9 +67,12 @@ public class MainMenu extends Activity {
         			
         		}
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_help))){
-        			//TODO: Start activity for help
-        			startActivity(new Intent(MainMenu.this,Help.class));
         			
+        			startActivity(new Intent(MainMenu.this,Help.class));
+        		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.download_map))){
+        			
+        			startActivity(new Intent(MainMenu.this,Wifi.class));
         		}
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.download_map))){
         			//TODO: Start activity for help
@@ -50,5 +82,6 @@ public class MainMenu extends Activity {
         	}
 		});
 	}
-	// TODO: function to setcontent view
+	
+	
 }
