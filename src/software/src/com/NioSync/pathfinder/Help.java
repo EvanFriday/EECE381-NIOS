@@ -11,11 +11,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
+
 public class Help extends FragmentActivity {
 	/**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 2;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -31,8 +32,9 @@ public class Help extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_help_pageviewer);
-
+        
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -62,6 +64,7 @@ public class Help extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
+        		
             return new HelpFragment();
         }
 

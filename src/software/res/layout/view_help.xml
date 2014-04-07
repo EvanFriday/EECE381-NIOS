@@ -11,5 +11,5 @@
         android:lineSpacingMultiplier="1.2"
         android:padding="16dp"
         android:text="@string/FragText" />
-
+    
 </ScrollView>
