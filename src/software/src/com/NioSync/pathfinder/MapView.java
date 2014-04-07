@@ -114,8 +114,8 @@ public class MapView extends ImageView {
 		//float scaleY = imgHeight / map.getMapHeight();
 		
 		Paint paint = new Paint();
-		paint.setColor(Color.BLUE);
-		paint.setStrokeWidth(2);
+		paint.setColor(Color.RED);
+		paint.setStrokeWidth(3);
 		
 		if(line){
 //			Node startNode = map.getNodeFromID(startID);

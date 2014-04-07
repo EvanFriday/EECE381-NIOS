@@ -49,10 +49,11 @@ public class MainMenu extends Activity {
         
         ListView menuList = (ListView) findViewById(R.id.listview_menu);
         String [] menu_items = {
-        		//getResources().getString(R.string.to_map),
+        		getResources().getString(R.string.to_map),
         		getResources().getString(R.string.download_map),
         		getResources().getString(R.string.to_map_select),
-        		getResources().getString(R.string.to_help)
+        		getResources().getString(R.string.to_help),
+        		getResources().getString(R.string.to_qrscan)
         };
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.menu_item, menu_items);
         menuList.setAdapter(adapt);
@@ -73,6 +74,9 @@ public class MainMenu extends Activity {
         		else if(strText.equalsIgnoreCase(getResources().getString(R.string.download_map))){
         			
         			startActivity(new Intent(MainMenu.this,Wifi.class));
+        		}
+        		else if(strText.equalsIgnoreCase(getResources().getString(R.string.to_qrscan))){
+        			startActivity(new Intent(MainMenu.this,qrScan.class));
         		}
         	}
 		});
