@@ -16,4 +16,8 @@ Platform setup:
 3. create, generate bsp and according project like in module 1
 4. bsp project can be named whatever, the main project however has to be named Pathfinder
 
+Android software Fix:
+If there are errors in help.java. It is very likely that some support library is missing in the project.
+Right click on the Pathfinder->android tools->add support library
+
 Pathfinder/ is ignore in gitignore, when you have new file in Pathfinder that you want to add, add them using with force command
