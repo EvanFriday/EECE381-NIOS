@@ -40,9 +40,12 @@ char* readsendname(char* name, alt_up_rs232_dev *uart) {
 	int handle;
 	int i = 0;
 	char temp_sdread = 1;
-	char *temp_string = malloc(sizeof(char) * 6);
+	int size_of_name;
 
 	handle = alt_up_sd_card_fopen(name, 0);
+	size_of_name = alt_up_sd_card_read(handle) + 1;
+
+	char *temp_string = malloc(sizeof(char) * size_of_name);
 	while (temp_sdread != -1) {
 		temp_sdread = alt_up_sd_card_read(handle);
 		temp_string[i] = temp_sdread;
