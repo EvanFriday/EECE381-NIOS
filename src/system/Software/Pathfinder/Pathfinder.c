@@ -5,8 +5,11 @@
 #include <system.h>
 
 int main() {
+
 	unsigned char data;
 	unsigned char parity;
+
+	int i;
 
 	char *name;
 	char *xml = ".xml";
@@ -26,22 +29,48 @@ int main() {
 		alt_up_rs232_read_data(uart, &data, &parity);
 	}
 
-	printf("Reading Name of the Map Data...\n");
-	name = readsendname("name.txt", uart);
-	printf("Name of the Data is %s\n", name);
+	while (1) {
+		while (data != '1') {
+			printf(
+					"Waiting for data to come back from the Middleman to trigger map sent\n");
+			while (alt_up_rs232_get_used_space_in_read_FIFO(uart) == 0)
+				;
+			// First byte is the number of characters in our message
+			alt_up_rs232_read_data(uart, &data, &parity);
+			int num_to_receive = (int) data;
+			printf("About to receive %d characters:\n", num_to_receive);
+			for (i = 0; i < num_to_receive; i++) {
+				while (alt_up_rs232_get_used_space_in_read_FIFO(uart) == 0)
+					;
+				alt_up_rs232_read_data(uart, &data, &parity);
+				printf("%c", data);
+			}
+			printf("\n");
+		}
 
-	printf("Sending the message to the Middleman\n");
-	strcpy(filename, name);
-	strcat(filename, xml);
-	printf("Sending %s\n", filename);
-	readsendfile(filename, uart);
-	strcpy(filename, name);
-	strcat(filename, jpeg);
-	printf("Sending %s\n", filename);
-	readsendfile(filename, uart);
+		printf("Reading Name of the Map Data...\n");
+		name = readsendname("name.txt", uart);
+		printf("Name of the Data is %s\n", name);
 
-	printf("\n");
-	printf("Message Echo Complete\n");
+		printf("Sending the message to the Middleman\n");
+		strcpy(filename, name);
+		strcat(filename, xml);
+		printf("Sending %s\n", filename);
+		readsendfile(filename, uart);
+		strcpy(filename, name);
+		strcat(filename, jpeg);
+		printf("Sending %s\n", filename);
+		readsendfile(filename, uart);
+
+		printf("\n");
+		printf("Message Echo Complete\n");
+
+		//reset pointer to files
+		uart = alt_up_rs232_open_dev(RS232_0_NAME);
+		initsdcard(&card, &device_reference);
+		testsdcard(&card, device_reference);
+		data = '0';
+	}
 	return 0;
 }
 

@@ -3,6 +3,7 @@ package com.NioSync.pathfinder;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Timer;
@@ -12,6 +13,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -25,11 +27,9 @@ public class DE2_Link extends Activity {
 		// This call will result in better error messages if you
 		// try to do things in the wrong thread.
 
-		/*
-		 * StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-		 * .detectDiskReads().detectDiskWrites().detectNetwork()
-		 * .penaltyLog().build());
-		 */
+		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+				.detectDiskReads().detectDiskWrites().detectNetwork()
+				.penaltyLog().build());
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.get_map);
@@ -45,6 +45,8 @@ public class DE2_Link extends Activity {
 		Timer tcp_timer = new Timer();
 		tcp_timer.schedule(tcp_task, 3000, 500);
 	}
+
+	// called when user click download
 
 	public void openSocket(View view) {
 		DE2_Class app = (DE2_Class) getApplication();
@@ -63,6 +65,38 @@ public class DE2_Link extends Activity {
 
 		new SocketConnect().execute((Void) null);
 	}
+
+	// Called when the user wants to download a map, this sends a signal to DE2
+	// to upload the map to middleman
+
+	public void sendMessage(View view) {
+		MyApplication app = (MyApplication) getApplication();
+
+		String msg = "1";
+
+		// Create an array of bytes. First byte will be the
+		// message length, and the next ones will be the message
+
+		byte buf[] = new byte[msg.length()];
+		buf[0] = (byte) msg.length();
+		System.arraycopy(msg.getBytes(), 0, buf, 1, msg.length());
+
+		// Now send through the output stream of the socket
+
+		OutputStream out;
+		try {
+			out = app.sock.getOutputStream();
+			try {
+				out.write(buf, 0, msg.length() + 1);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// called to connect to a socket, called when user clicked download
 
 	public class SocketConnect extends AsyncTask<Void, Void, Socket> {
 
@@ -107,20 +141,23 @@ public class DE2_Link extends Activity {
 		}
 	}
 
-	// Construct an IP address from the four boxes
+	// Construct an IP address
 
 	public String getConnectToIP() {
 		String addr = "192.168.1.1";
 		return addr;
 	}
 
-	// Gets the Port from the appropriate field.
+	// Gets the Port
 
 	public Integer getConnectToPort() {
 		Integer port;
 		port = 50002;
 		return port;
 	}
+
+	// This is a timer Task. Be sure to work through the tutorials
+	// on Timer Tasks before trying to understand this code.
 
 	public class TCPReadTimerTask extends TimerTask {
 		public void run() {
