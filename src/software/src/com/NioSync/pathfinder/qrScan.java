@@ -1,7 +1,12 @@
 package com.NioSync.pathfinder;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,12 +34,15 @@ public class qrScan extends Activity
     private Camera mCamera;
     private CameraPreview mPreview;
     private Handler autoFocusHandler;
-
+    
     TextView scanText;
     Button scanButton;
-
+    Button wifiButton;
+    String networkSSID;
+    String networkType;
+    String networkPass;
     ImageScanner scanner;
-
+    private boolean wifiInfo = false;
     private boolean barcodeScanned = false;
     private boolean previewing = true;
 
@@ -64,19 +72,57 @@ public class qrScan extends Activity
         scanText = (TextView)findViewById(R.id.scanText);
 
         scanButton = (Button)findViewById(R.id.ScanButton);
-
+        wifiButton = (Button)findViewById(R.id.WifiButton);
         scanButton.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     if (barcodeScanned) {
                         barcodeScanned = false;
-                        scanText.setText("Scanning...");
+                        scanText.setText("Scanning...Again");
                         mCamera.setPreviewCallback(previewCb);
                         mCamera.startPreview();
                         previewing = true;
                         mCamera.autoFocus(autoFocusCB);
+                        scanButton.setText("Scan Another QR Code");
                     }
                 }
             });
+        wifiButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                if (wifiInfo) {
+                   WifiConfiguration config = new WifiConfiguration();
+                   config.SSID = "\"" + networkSSID + "\"";
+                   if(networkType == "WPA"){
+                   config.preSharedKey = "\""+networkPass+"\"";
+                   }
+                   else if(networkType == "WEP"){
+                	   config.wepKeys[0] = "\"" + networkPass + "\""; 
+                	   config.wepTxKeyIndex = 0;
+                	   config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                	   config.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40); 
+                   }
+                   else{
+                	   config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                   }
+                   WifiManager wifiManager = (WifiManager)qrScan.this.getSystemService(Context.WIFI_SERVICE); 
+                   if(wifiManager.getWifiState()!=WifiManager.WIFI_STATE_ENABLED){
+                	   wifiManager.setWifiEnabled(true);
+                   }
+                   wifiManager.addNetwork(config);
+                   List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+                   for( WifiConfiguration i : list ) {
+                       if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+                            wifiManager.disconnect();
+                            wifiManager.enableNetwork(i.networkId, true);
+                            wifiManager.reconnect();               
+
+                            break;
+                       }           
+                    }
+                   
+                }
+            }
+        });
+        
     }
 
     public void onPause() {
@@ -125,11 +171,27 @@ public class qrScan extends Activity
                     previewing = false;
                     mCamera.setPreviewCallback(null);
                     mCamera.stopPreview();
-                    
+                  
                     SymbolSet syms = scanner.getResults();
-                    for (Symbol sym : syms) {
-                        scanText.setText("barcode result " + sym.getData());
-                        barcodeScanned = true;
+                   
+                    for(Symbol sym : syms){
+                    	String ntwkInfo =sym.getData();
+                    	if(ntwkInfo.contains("WIFI:")){
+                    		String[] parts = ntwkInfo.split(":");
+                    		for(int i = 0;i<parts.length;i++){
+                    		System.out.println(parts[i]);
+                    		}
+                    	networkSSID = parts[1];
+                    	networkType = parts[2];
+                    	networkPass = parts[3];
+                    	
+                    	
+                    	
+                 		scanText.setText("Wifi network information: SSID= "+parts[1]+" Type= "+parts[2]+" Pass= "+parts[3]);
+                 		barcodeScanned=true;
+                 		wifiInfo=true;
+                    	}
+                    	
                     }
                 }
             }

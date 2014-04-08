@@ -24,5 +24,11 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center"
       android:text="@string/scan_qr_code" />
+  <Button
+      android:id="@+id/WifiButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/connect_wifi" />
 
 </LinearLayout>
