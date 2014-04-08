@@ -10,10 +10,9 @@
         android:targetSdkVersion="17" />
 
     <uses-feature android:name="android.hardware.wifi" />
-
-    <uses-permission
-        android:name="android.permission.ACCESS_NETWORK_STATE"
-        android:required="true" />
+	<uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission
         android:name="android.permission.ACCESS_NETWORK_STATE"
         android:required="true" />
@@ -64,6 +63,11 @@
         </activity>
         <activity
             android:name="com.NioSync.pathfinder.Help"
+            android:label="@string/app_name"
+            android:parentActivityName="com.NioSync.pathfinder.MainMenu" >
+        </activity>
+                <activity
+            android:name="com.NioSync.pathfinder.qrScan"
             android:label="@string/app_name"
             android:parentActivityName="com.NioSync.pathfinder.MainMenu" >
         </activity>
