@@ -48,8 +48,8 @@ public class MainMenu extends Activity {
 
 		ListView menuList = (ListView) findViewById(R.id.listview_menu);
 		String[] menu_items = {
-				// getResources().getString(R.string.to_map),
-				getResources().getString(R.string.download_map),
+				
+				//REMOVED FOR BETTER BUTTON getResources().getString(R.string.to_map),
 				getResources().getString(R.string.get_map),
 				getResources().getString(R.string.to_map_select),
 				getResources().getString(R.string.to_qrscan),
@@ -74,10 +74,6 @@ public class MainMenu extends Activity {
 						R.string.to_help))) {
 
 					startActivity(new Intent(MainMenu.this, Help.class));
-				} else if (strText.equalsIgnoreCase(getResources().getString(
-						R.string.download_map))) {
-
-					startActivity(new Intent(MainMenu.this, Wifi.class));
 				} else if (strText.equalsIgnoreCase(getResources().getString(
 						R.string.to_qrscan))) {
 					startActivity(new Intent(MainMenu.this, qrScan.class));

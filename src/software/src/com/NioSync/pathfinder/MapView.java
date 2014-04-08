@@ -45,17 +45,14 @@ public class MapView extends ImageView {
 	
 	public MapView(Context context, AttributeSet attrs) {
 		super(context, attrs);	
-		
 		line= false;
 		this.map=null;
-		
 		this.bitmaps = BitmapFactory.decodeStream(getResources().openRawResource(R.raw.mcld1));	
 	}
 	
 	 @Override 
 	    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
 	         Drawable d = getDrawable();
-
 	         if(d!=null){
 	                 // ceil not round - avoid thin vertical gaps along the left/right edges
 	                 int width = MeasureSpec.getSize(widthMeasureSpec);
