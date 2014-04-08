@@ -1,0 +1,66 @@
+<!--#Node
+	#id
+	#name
+	#x,y
+	#type: Exit, Room, Hall, Washroom, Stairway, Elevator, MWash, FWash, DWash
+-->
+
+<graph>
+	
+	<Image Height="521" Width="529"/>
+	
+
+	<!-- Rooms -->
+	<node Type="Room" id="r0" name="Room 0" x="115" y="459"/>
+	<node Type="Room" id="r1" name="Room 1" x="115" y="346"/>
+	<node Type="Room" id="r2" name="Room 2" x="115" y="165"/>
+	<node Type="Room" id="r13" name="Room 13" x="115" y="429"/>
+	<node Type="Room" id="r12" name="Room 12" x="115" y="238"/>
+
+	<node Type="Room" id="r4" name="Room 4" x="168" y="95"/>
+	<node Type="Room" id="r5" name="Room 5" x="319" y="95"/>
+	<node Type="Room" id="r6" name="Room 6" x="376" y="95"/>
+
+	<node Type="Room" id="r7" name="Room 7" x="414" y="124"/>
+	<node Type="Room" id="r8" name="Room 8" x="414" y="211"/>
+	<node Type="Room" id="r9" name="Room 9" x="414" y="275"/>
+	<node Type="Room" id="r10" name="Room 10" x="414" y="250"/>
+	<node Type="Room" id="r11" name="Room 11" x="414" y="159"/>
+
+	<node Type="Hall" id="junction1" name="Junction 1" x="115" y="95"/>
+	<node Type="Hall" id="junction2" name="Junction 2" x="267" y="95"/>
+	<node Type="Hall" id="junction3" name="Junction 3" x="414" y="95"/>
+
+	<node Type="MWash" id="mwash1" name="Men's Washroom 1" x="217" y="95"/>
+	<node Type="FWash" id="fwash1" name="Women's Washroom 1" x="317" y="95"/>
+
+	<node Type="Exit" id="exitSW" name="SouthWest Exit" x="115" y="487"/>
+	<node Type="Exit" id="exitN" name="North Exit" x="268" y="31"/>
+	<node Type="Exit" id="exitS" name="South Exit" x="268" y="143"/>
+	<node Type="Exit" id="exitSE" name="SouthEast Exit" x="414" y="296"/>
+	
+	
+
+	<!-- edges -->
+	<edge s="exitSW" d="r0"/>
+	<edge s="r0" d="r13"/>
+	<edge s="r13" d="r1"/>
+	<edge s="r1" d="r12"/>
+	<edge s="r12" d="r2"/>
+	<edge s="r2" d="junction1"/>
+	<edge s="junction1" d="r4"/>
+	<edge s="r4" d="mwash1"/>
+	<edge s="mwash1" d="junction2"/>
+	<edge s="junction2" d="exitN"/>
+	<edge s="junction2" d="exitS"/>
+	<edge s="junction2" d="fwash1"/>
+	<edge s="fwash1" d="r5"/>
+	<edge s="r5" d="r6"/>
+	<edge s="r6" d="junction3"/>
+	<edge s="junction3" d="r7"/>
+	<edge s="r7" d="r11"/>
+	<edge s="r11" d="r8"/>
+	<edge s="r8" d="r10"/>
+	<edge s="r10" d="r9"/>
+	<edge s="r9" d="exitSE"/>
+</graph>
