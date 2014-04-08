@@ -1,42 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PathFinder</string>
-    <string name="action_settings">Settings</string>
-    <string name="search_hint">Name of the place</string>
-    <string name="search_button">Search</string>
-    <string name="view_map">View Map</string>
-    <string name="back_button">Back</string>
-    <string name="to_map">Go To Map</string>
-    <string name="to_map_select">Select a Map</string>
-    <string name="to_help">Help</string>
-    <string name="selected_map">No Map Currently Selected</string>
-    <string name="title_activity_map">MapActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="help_text_1">How do I select a map?</string>
-    <string name="help_text_1_view">Click the \'Choose Map\' button in the main menu, and select map needed, or select and download. Alternatively you can scan a QR code</string>
-    <string name="help_text_2">Question2</string>
-    <string name="help_text_2_view">help text for two</string>
-    <string name="help_text_3">Question3</string>
-    <string name="help_text_3_view">help text for three</string>
-    <string name="wifi_1_view">wifi button</string>
-    <string name="wifi_1">Manually join a WiFi network.</string>
-    <string name="pulldown">Pulldown For Location Select</string>
-    <string name="wifi_2_view">wifi button 2</string>
-    <string name="wifi_2">Join a WiFi network via QR Code.</string>
-    <string name="wifi_3_view">wifi button 2</string>
-    <string name="wifi_3">Join a WiFi network via NFC.</string>
-    <string name="progress_1">Downloading XML file...</string>
-    <string name="progress_2">Downloading JPEG file...</string>
-    <string name="progress_3">Complete!</string>
-    <string name="download_button">Download</string>
-    <string name="download_map">Download Map</string>
-    <string name="title_activity_zoom">ZoomActivity</string>
-    <string name="title_activity_manual_connection">ManualConnection</string>
+    <string name="app_name">ece381</string>
+    <string name="label_ip">IP:</string>
+    <string name="playsong">Play Song</string>
+    <string name="label_port">Port:</string>
+    <string name="printsong">Print Song on Debug</string>
     <string name="connect">Connect</string>
-    <string name="label_port">Port :</string>
-    <string name="label_ip">IP :</string>
-    <string name="get_map">Get Map</string>
-    <string name="FragText">Question and Answers: \n 1. How do I find a path between two room? \n \n Go to Map from the main menu and then select the two room that you are at. \n \n 2. How do I use the application? \n \n First download the map from the download tab located in the main menu. Then choose go to map in the main menu to access the Map. \n \n \n \n \n ABOUT : \n The android application Pathfinder is created by a group of UBC student. The product is for non economic use.</string>
+    <string name="clear">Clear</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="label_myip">My IP:</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+    <string name="refresh_socket">Show Sock.</string>
 
 </resources>
