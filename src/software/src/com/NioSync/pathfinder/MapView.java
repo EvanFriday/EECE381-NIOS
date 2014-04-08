@@ -1,6 +1,7 @@
 package com.NioSync.pathfinder;
 
 import java.util.Vector;
+import java.lang.StrictMath;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
 
 public class MapView extends ImageView {
 	Bitmap bitmaps;
@@ -133,6 +135,33 @@ public class MapView extends ImageView {
 					endy = (int)(Path.elementAt(i).getY()*scaleY);
 					
 					canvas.drawLine(startx, starty, endx, endy, paint);
+					
+					if((i+1) ==Path.size()){
+						
+						double x0=startx,y0=starty,x1=endx,y1=endy,dx,dy;
+						
+						dx	= x0-x1;
+						dy = y0-y1;
+						double sum=dx*dx+dy*dy;
+						double Norm = Math.sqrt(sum);
+
+						 double udx =dx/Norm;
+						 double udy = dy/Norm;
+
+						double ax = udx * Math.sqrt(3)/2 - udy * 1/2;
+
+						double ay = udx * 1/2 + udy * Math.sqrt(3)/2;
+
+						double bx = udx * Math.sqrt(3)/2 + udy * 1/2;
+
+						double by =  - udx * 1/2 + udy * Math.sqrt(3)/2;
+						//(x1 + 20 * ax, y1 + 20 * ay) 
+						//(x1 + 20 * bx, y1 + 20 * by)
+						canvas.drawLine((int)(x1 + 20 * ax), (int)(y1 + 20 * ay), endx, endy, paint);
+						canvas.drawLine((int)(x1 + 20 * bx), (int)(y1 + 20 * by), endx, endy, paint);
+						
+						
+					}
 				}
 			}
 		}

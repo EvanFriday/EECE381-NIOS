@@ -7,12 +7,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
@@ -21,8 +28,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PathFinder extends Activity {
 
@@ -39,6 +48,8 @@ public class PathFinder extends Activity {
 	private Spinner start_loc_spin, dest_loc_spin;
 	private ArrayAdapter<String> start_adapt, dest_adapt;
 	private Vector<Coord> newPath;
+	
+	String[] searchOption = new String[] {"Start","Dest"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,26 @@ public class PathFinder extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		//************search action bar************
+		// TODO
+		// Create an array adapter to populate dropdownlist
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, searchOption);
+ 
+        // Enabling dropdown list navigation for the action bar
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+ 
+        // Defining Navigation listener
+        OnNavigationListener navigationListener = new OnNavigationListener() {
+ 
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                Toast.makeText(getBaseContext(), "You selected : " + searchOption[itemPosition]  , Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
+ 
+        /** Setting dropdown items and item navigation listener for the actionbar */
+        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
 		//***************zoom************
 		mapView = (MapView) findViewById(R.id.map_container);
 		mapView.setOnClickListener(new View.OnClickListener() {
@@ -134,15 +165,51 @@ public class PathFinder extends Activity {
 
 			}
 		});
-
 	}
+	
+	
+	//****************search on navigation***************** 
+	
 
+	
+	
+	//**************set up menu*****************
+	// TODO
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.path_finder, menu);
-		return true;
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.path_finder, menu);
+	    
+	 // Associate searchable configuration with the SearchView
+	    SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    SearchView searchView =(SearchView) menu.findItem(R.id.action_search).getActionView();
+	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    
+	    return super.onCreateOptionsMenu(menu);
 	}
+
+	
+	
+	//**********************************************
+	//show action bar items
+	//**********************************************
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_search:
+	        	Toast.makeText(getBaseContext(), "You pressed Search ", Toast.LENGTH_SHORT).show();
+	            return true;
+	        case R.id.action_settings:
+	            
+	            return true;
+	        
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 
 	public void showHideTools() {
 		this.pulldown_container = (LinearLayout) findViewById(R.id.linearLayout_pulldowncontainer);
@@ -196,7 +263,6 @@ public class PathFinder extends Activity {
 		spin.setAdapter(spinner_adapter);
 		return spinner_adapter;
 	}
-
 	
 	private void zoomImageFromThumb(final View thumbView, int imageResId) {
 	    // If there's an animation in progress, cancel it

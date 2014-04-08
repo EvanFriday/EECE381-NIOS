@@ -5,13 +5,14 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:id="@+id/helptext"
         style="?android:textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingMultiplier="1.2"
-        android:textStyle="bold"
-        android:textSize="16sp"
         android:padding="16dp"
-        android:text="@string/FragText" />
+        android:text="@string/FragText2"
+        android:textSize="16sp"
+        android:textStyle="bold" />
     
 </ScrollView>

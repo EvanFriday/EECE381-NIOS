@@ -8,6 +8,8 @@ import java.net.UnknownHostException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//import com.NioSync.pathfinder.MyApplication;
+
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +23,8 @@ public class ManualConnection extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		// This call will result in better error messages if you
 		// try to do things in the wrong thread.
@@ -43,6 +47,7 @@ public class ManualConnection extends Activity {
 		TCPReadTimerTask tcp_task = new TCPReadTimerTask();
 		Timer tcp_timer = new Timer();
 		tcp_timer.schedule(tcp_task, 3000, 500);
+		
 	}
 
 	@Override
