@@ -39,6 +39,7 @@ public class MainMenu extends Activity {
 
 			}
 		});
+
 		imagebutton_gotomap.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				startActivity(new Intent(MainMenu.this, PathFinder.class));
@@ -51,7 +52,10 @@ public class MainMenu extends Activity {
 				getResources().getString(R.string.download_map),
 				getResources().getString(R.string.get_map),
 				getResources().getString(R.string.to_map_select),
-				getResources().getString(R.string.to_help) };
+				getResources().getString(R.string.to_qrscan),
+				getResources().getString(R.string.to_help)
+
+		};
 		ArrayAdapter<String> adapt = new ArrayAdapter<String>(this,
 				R.layout.menu_item, menu_items);
 		menuList.setAdapter(adapt);
@@ -75,13 +79,16 @@ public class MainMenu extends Activity {
 
 					startActivity(new Intent(MainMenu.this, Wifi.class));
 				} else if (strText.equalsIgnoreCase(getResources().getString(
+						R.string.to_qrscan))) {
+					startActivity(new Intent(MainMenu.this, qrScan.class));
+				} else if (strText.equalsIgnoreCase(getResources().getString(
 						R.string.get_map))) {
 					// TODO: Start activity for help
 					startActivity(new Intent(MainMenu.this, DE2_Link.class));
 
 				}
 			}
+
 		});
 	}
-
 }

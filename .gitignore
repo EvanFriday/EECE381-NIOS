@@ -49,7 +49,7 @@ libs/
 .sopc_builder/
 
 Makefile
-
+!src/software/libs
 .cproject
 !src/
 Altera_UP_SD_Card_Memory_Block.bsf

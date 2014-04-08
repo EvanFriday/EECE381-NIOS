@@ -8,7 +8,7 @@
 		
     	<RelativeLayout
 		    android:layout_width="fill_parent"
-		    android:layout_height="284dp"
+		    android:layout_height="265dp"
 		    android:layout_gravity="center_vertical" >
 
     	 	<ImageView
@@ -19,7 +19,7 @@
     	 	    android:layout_centerVertical="true"
     	 	    android:src="@raw/ic_launcher" 
     	 	    android:contentDescription="@string/title_activity_map"/>
-
+    	    
     	 	<ImageView
     	 	    android:id="@+id/goToMap_menu"
     	 	    android:layout_width="wrap_content"
@@ -27,21 +27,23 @@
     	 	    android:layout_alignParentBottom="true"
     	 	    android:layout_centerHorizontal="true"
     	 	    android:src="@raw/gotomap" />
-    	    
+    	 	
     	</RelativeLayout>
     
 		<RelativeLayout
 		    android:layout_width="wrap_content"
-		    android:layout_height="224dp"
+		    android:layout_height="300dp"
 		    android:layout_gravity="center_vertical" >
+    	 	
+		    
 
 			<ListView
 			    android:id="@+id/listview_menu"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:layout_centerVertical="true"
 			    android:gravity="center_horizontal"
-			    android:orientation="vertical" />
+			    android:orientation="vertical"
+			    android:scaleY="0.8" />
 			
 		</RelativeLayout>
 
