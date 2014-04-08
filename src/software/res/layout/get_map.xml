@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ProgressBar
-        android:id="@+id/Map_DL_Progress_Bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="198dp" />
-
     <EditText
         android:id="@+id/Transfer_Progress"
         android:layout_width="fill_parent"
@@ -32,5 +23,14 @@
         android:layout_marginTop="44dp"
         android:onClick="openSocket"
         android:text="@string/download_button" />
+
+    <ProgressBar
+        android:id="@+id/Map_DL_Progress_Bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Transfer_Progress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp" />
 
 </RelativeLayout>
