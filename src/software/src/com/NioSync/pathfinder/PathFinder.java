@@ -49,7 +49,7 @@ public class PathFinder extends Activity {
 	private ArrayAdapter<String> start_adapt, dest_adapt;
 	private Vector<Coord> newPath;
 	
-	String[] searchOption = new String[] {"Start","Destination"};
+	String[] searchOption = new String[] {"Start","Dest"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +62,13 @@ public class PathFinder extends Activity {
 		
 		//************search action bar************
 		// TODO
-		/** Create an array adapter to populate dropdownlist */
+		// Create an array adapter to populate dropdownlist
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, searchOption);
  
-        /** Enabling dropdown list navigation for the action bar */
+        // Enabling dropdown list navigation for the action bar
         getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
  
-        /** Defining Navigation listener */
+        // Defining Navigation listener
         OnNavigationListener navigationListener = new OnNavigationListener() {
  
             @Override
@@ -199,7 +199,7 @@ public class PathFinder extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_search:
-	            
+	        	Toast.makeText(getBaseContext(), "You pressed Search ", Toast.LENGTH_SHORT).show();
 	            return true;
 	        case R.id.action_settings:
 	            

@@ -36,5 +36,7 @@
     <string name="action_search">Search</string>
     <string name="Search_hint">Enter Room Number</string>
     <string name="search_name">Search name</string>
+    <string name="From">From :</string>
+    <string name="To">To :</string>
 
 </resources>
