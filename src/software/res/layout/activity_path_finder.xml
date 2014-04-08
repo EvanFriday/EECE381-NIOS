@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/pulldown"
-        android:src="@drawable/pulldown_bar"
+        android:src="@drawable/pulldown_bar_extended"
         android:layout_below="@id/linearLayout_pulldowncontainer"/>
 
     <com.NioSync.pathfinder.MapView
