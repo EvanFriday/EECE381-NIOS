@@ -43,7 +43,7 @@
 			    android:layout_height="wrap_content"
 			    android:gravity="center_horizontal"
 			    android:orientation="vertical"
-			    android:scaleY="1.0" />
+			    android:scaleY="0.8" />
 			
 		</RelativeLayout>
 
