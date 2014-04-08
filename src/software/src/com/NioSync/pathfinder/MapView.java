@@ -1,7 +1,6 @@
 package com.NioSync.pathfinder;
 
 import java.util.Vector;
-import java.lang.StrictMath;
 
 import android.content.Context;
 import android.graphics.Bitmap;
