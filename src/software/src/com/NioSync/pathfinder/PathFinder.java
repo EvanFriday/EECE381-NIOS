@@ -7,6 +7,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ActionBar;
+import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
@@ -29,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PathFinder extends Activity {
 
@@ -45,6 +48,8 @@ public class PathFinder extends Activity {
 	private Spinner start_loc_spin, dest_loc_spin;
 	private ArrayAdapter<String> start_adapt, dest_adapt;
 	private Vector<Coord> newPath;
+	
+	String[] searchOption = new String[] {"Start","Destination"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,24 @@ public class PathFinder extends Activity {
 		
 		//************search action bar************
 		// TODO
-		
+		/** Create an array adapter to populate dropdownlist */
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, searchOption);
+ 
+        /** Enabling dropdown list navigation for the action bar */
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+ 
+        /** Defining Navigation listener */
+        OnNavigationListener navigationListener = new OnNavigationListener() {
+ 
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                Toast.makeText(getBaseContext(), "You selected : " + searchOption[itemPosition]  , Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        };
+ 
+        /** Setting dropdown items and item navigation listener for the actionbar */
+        getActionBar().setListNavigationCallbacks(adapter, navigationListener);
 		//***************zoom************
 		mapView = (MapView) findViewById(R.id.map_container);
 		mapView.setOnClickListener(new View.OnClickListener() {

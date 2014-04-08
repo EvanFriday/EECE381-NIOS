@@ -1,26 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-	
-	
-    <Spinner
-            android:id="@+id/startdes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             />
-    
-    
-     <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
-          android:icon="@drawable/ic_action_expand"
-          android:showAsAction="ifRoom"> 
-        <menu>
-	        <item
-	            android:id="@+id/start"
-	            android:title="Start Location" />
-	        <item
-	            android:id="@+id/des"
-	            android:title="Destination Location" />
-	    </menu>
-    </item>
     
      <searchable xmlns:android="http://schemas.android.com/apk/res/android"
         android:label="@string/search_name"
