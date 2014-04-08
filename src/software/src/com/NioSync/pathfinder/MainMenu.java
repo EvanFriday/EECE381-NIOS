@@ -83,9 +83,7 @@ public class MainMenu extends Activity {
 					startActivity(new Intent(MainMenu.this, qrScan.class));
 				} else if (strText.equalsIgnoreCase(getResources().getString(
 						R.string.get_map))) {
-					// TODO: Start activity for help
 					startActivity(new Intent(MainMenu.this, DE2_Link.class));
-
 				}
 			}
 
