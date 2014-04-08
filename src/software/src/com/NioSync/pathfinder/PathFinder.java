@@ -10,6 +10,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -55,7 +56,7 @@ public class PathFinder extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		//************search action bar************
-		
+		// TODO
 		
 		//***************zoom************
 		mapView = (MapView) findViewById(R.id.map_container);
@@ -142,9 +143,16 @@ public class PathFinder extends Activity {
 
 			}
 		});
-
 	}
+	
+	
+	//****************search on navigation***************** 
+	
 
+	
+	
+	//**************set up menu*****************
+	// TODO
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
@@ -159,6 +167,8 @@ public class PathFinder extends Activity {
 	    return super.onCreateOptionsMenu(menu);
 	}
 
+	
+	
 	//**********************************************
 	//show action bar items
 	//**********************************************
@@ -231,7 +241,6 @@ public class PathFinder extends Activity {
 		spin.setAdapter(spinner_adapter);
 		return spinner_adapter;
 	}
-
 	
 	private void zoomImageFromThumb(final View thumbView, int imageResId) {
 	    // If there's an animation in progress, cancel it
