@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
@@ -41,9 +40,17 @@ public class DE2_Link extends Activity {
 		// Set up a timer task. We will use the timer to check the
 		// input queue every 500 ms
 
-		TCPReadTimerTask tcp_task = new TCPReadTimerTask();
-		Timer tcp_timer = new Timer();
-		tcp_timer.schedule(tcp_task, 3000, 500);
+		/*
+		 * TCPReadTimerTask tcp_task = new TCPReadTimerTask(); Timer tcp_timer =
+		 * new Timer(); tcp_timer.schedule(tcp_task, 3000, 500);
+		 */
+
+	}
+
+	public void onButtonClick(View view) {
+		openSocket(view);
+		sendMessage(view);
+		closeSocket(view);
 	}
 
 	// called when user click download
@@ -144,7 +151,7 @@ public class DE2_Link extends Activity {
 	// Construct an IP address
 
 	public String getConnectToIP() {
-		String addr = "192.168.1.1";
+		String addr = "192.168.1.243";
 		return addr;
 	}
 
@@ -205,10 +212,6 @@ public class DE2_Link extends Activity {
 				}
 			}
 		}
-	}
-
-	void getCurrentLocation() {
-
 	}
 
 }
