@@ -64,7 +64,8 @@ public class Help extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-        		
+        	if(position == 1)
+        		return new AboutFragment();	
             return new HelpFragment();
         }
 
