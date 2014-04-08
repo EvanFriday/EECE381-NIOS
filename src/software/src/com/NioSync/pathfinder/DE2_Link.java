@@ -15,6 +15,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -22,44 +23,28 @@ import android.widget.TextView;
 
 public class DE2_Link extends Activity {
 	String addr;
-	private SocketConnect SC;
-	private Socket socket;
-	private OutputStream out;
-	private InputStream in;
+	private SocketHandler Sock;
 	String ipAddress;
 	Integer port;
 	Button download;
 	ProgressBar progress_bar;
 	TextView text;
+	Boolean async_running = false;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
-		
-		ipAddress  = "192.168.1.243";
-		port = 50002;
-		SC = new SocketConnect();
+		setContentView(R.layout.get_map);
+		ipAddress  = "127.0.0.1";
+		port = 5050;
+		Sock = new SocketHandler(ipAddress,port);
 		text = (TextView) findViewById(R.id.Transfer_Progress);
 		progress_bar = (ProgressBar) findViewById(R.id.Map_DL_Progress_Bar);
 		download = (Button) findViewById(R.id.download_maps_button);
 		
 		download.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				progress_bar.setProgress(10);
-				text.setText("Attempting to open Socket");
-				openSocket(v);
-				
-				progress_bar.setProgress(35);
-				text.setText("Sending Opening Message");
-				sendMessage(v);
-				
-				progress_bar.setProgress(50);
-				//TODO: Call our message receiver
-				
-				progress_bar.setProgress(75);
-				text.setText("Closing Socket");
-				closeSocket(v);
-				progress_bar.setProgress(100);
-				
+            public void onClick(View v) {
+				progress_bar.setProgress(0);
+				startSocket(v);				
 			}
 		});
 		StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -70,112 +55,119 @@ public class DE2_Link extends Activity {
 		 * TCPReadTimerTask tcp_task = new TCPReadTimerTask(); Timer tcp_timer =
 		 * new Timer(); tcp_timer.schedule(tcp_task, 3000, 500);
 		 */
-		setContentView(R.layout.get_map);
-	}
-	public void openSocket(View view) {		
 		
-		if (socket != null && socket.isConnected() && !socket.isClosed()) {
+	}
+	public void startSocket(View view) {		
+		
+		if (Sock.socket != null && Sock.socket.isConnected() && !Sock.socket.isClosed()) {
 			text.setText("Socket already open");
 			return;
 		}
-		try {
-			text.setText("Opening Socket");
-			progress_bar.setProgress(25);
-			SC.execute((Void) null);
-			out = socket.getOutputStream();
-			in = socket.getInputStream();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(!async_running){
+			Sock.execute((Void) null);
 		}
+			
 	}
-	public void closeSocket(View view) {
-		try {
-			this.out.close();
-			this.in.close();
-			this.socket.close();
-		} catch (IOException e) {
-			text.setText("failed to close socket");
-			e.printStackTrace();
+
+	public class SocketHandler extends AsyncTask<Void, Void, Void> {
+		private Socket socket;
+		private OutputStream out;
+		private InputStream in;
+		byte msg;
+		TCPTask tcpt;
+		String ipAddress;
+		Integer port;
+		public SocketHandler(String ipAddress,int port){
+			this.ipAddress = ipAddress;
+			this.port = port;
+			this.msg = 0x01;
 		}
-	}
-	public void sendMessage(View view) {
-			byte msg = 0x01;
+		protected void onPreExecute(){
+			async_running=true;
+			text.setText("beginning socket connection");
+			progress_bar.setProgress(10);
+		}
+		protected Void doInBackground(Void... params) {
 			try {
+				this.socket = new Socket(ipAddress,port);
+				text.setText("socket created");
+				this.out=socket.getOutputStream();
+				this.in=socket.getInputStream();
+				progress_bar.setProgress(25);
+				text.setText("sending start signal to de2");
 				this.out.write(msg);
-			} catch (IOException e) {
-				text.setText("message failed to send to De2");
-				e.printStackTrace();
-			}
-	}
-	public class SocketConnect extends AsyncTask<Void, Void, Socket> {
-		private Socket s;
-		public SocketConnect(){
-		}
-		protected Socket doInBackground(Void... voids) {
-			try {
-				s = new Socket(ipAddress,port);
+				progress_bar.setProgress(50);
+				this.tcpt = new TCPTask(this.socket,this.in,this.out);
+				this.tcpt.run();
+				this.out.close();
+				this.in.close();
+				this.socket.close();
+				progress_bar.setProgress(90);
 			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return s;
+			return null;
 		}
-		//Calls on close
-		protected void onPostExecute(Socket s) {
-			socket = s;
+		protected void onPostExecute() {
+			async_running=false;
+			text.setText("closing socket connection");
+			progress_bar.setProgress(100);
 		}
 	}
-	public class TCPReadTimerTask extends TimerTask {
-		public void run() {
-			text.setText("reading in file");
-			if (socket != null && socket.isConnected()
-					&& !socket.isClosed()) {
-				try {
-
-					// See if any bytes are available from the Middleman
-					int bytes_avail = in.available();
-					if (bytes_avail > 0) {
-						// If so, read them in and create a sring
-						byte buf[] = new byte[bytes_avail];
-						in.read(buf);
-						final String s = new String(buf, 0, bytes_avail,"US-ASCII");
-						// As explained in the tutorials, the GUI can not be
-						// updated in an asyncrhonous task. So, update the GUI
-						// using the UI thread.
-
-						String filename = "nodes.xml";
-						FileOutputStream outputStream;
-						outputStream = openFileOutput(filename,Context.MODE_PRIVATE);
-						outputStream.write(s.getBytes());
-						outputStream.close();
-
-						runOnUiThread(new Runnable() {
-							public void run() {
-								EditText et = (EditText) findViewById(R.id.Transfer_Progress);
-								et.setText(s);
-							}
-						});
+	public class TCPTask extends TimerTask {
+			Socket socket;
+			InputStream in;
+			OutputStream out;
+			public TCPTask(Socket s,InputStream i, OutputStream o){
+				this.socket = s;
+				this.in=i;
+				this.out=o;
+			}
+			public void run() {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						text.setText("beginning to read file");
+						progress_bar.setProgress(60);
 					}
-				} catch (IOException e) {
-					e.printStackTrace();
+				});
+				if (socket != null && socket.isConnected()
+						&& !socket.isClosed()) {
+					try {
+	
+						// See if any bytes are available from the Middleman
+						int bytes_avail = in.available();
+						
+						if (bytes_avail > 0) {
+							// If so, read them in and create a sring
+							byte buf[] = new byte[bytes_avail];
+							in.read(buf);
+							final String s = new String(buf, 0, bytes_avail,"US-ASCII");
+							// As explained in the tutorials, the GUI can not be
+							// updated in an asyncrhonous task. So, update the GUI
+							// using the UI thread.
+								
+							String filename = "nodes.xml";
+							FileOutputStream outputStream;
+							outputStream = openFileOutput(filename,Context.MODE_PRIVATE);
+							outputStream.write(s.getBytes());
+							outputStream.close();
+							
+	
+							runOnUiThread(new Runnable() {
+								public void run() {
+									text.setText(s);
+									progress_bar.setProgress(75);
+								}
+							});
+						}
+						socket.close();
+					
+					} catch (IOException e) {
+						e.printStackTrace();
 				}
 			}
 		}
 	}
-	/*
-	 * GETTERS AND SETTERS
-	 */
-	public String getIpAddress() {
-		return ipAddress;
-	}
-	public void setIpAddress(String ipAddress) {
-		this.ipAddress = ipAddress;
-	}
-	public Integer getPort() {
-		return port;
-	}
-	public void setPort(Integer port) {
-		this.port = port;
-	}
-	
 }
 
