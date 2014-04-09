@@ -165,10 +165,11 @@ public class PathFinder extends Activity {
 
 			}
 		});
-		/*
+		
 		Intent i = getIntent();
-		if (i.getExtras().containsKey("currentLocation")) {
+		if (i.getExtras()!=null && i.getExtras().containsKey("currentLocation")) {
 			String scannedLocation = i.getExtras().getString("currentLocation");
+			start_loc_spin.setSelection(start_adapt.getPosition(map_object.getNodeNameFromID(scannedLocation)));
 			//****************update map***********************
 	    	Node startNode = map_object.getNodeFromID(scannedLocation);
 	    	Node endNode = map_object.getNodeFromName(dest_loc);
@@ -182,8 +183,11 @@ public class PathFinder extends Activity {
 	    	mapView.setPath(newPath, true);
 	    	mapView.invalidate();
 	    	//*************************************************
+	    	 
+	    	
+			
 		}
-		*/
+		
 	}
 	
 	

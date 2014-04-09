@@ -28,8 +28,8 @@ public class MapView extends ImageView {
 	int starty=0;
 	int endx=0;
 	int endy=0;
-	int scaleX=1;
-	int scaleY=1;
+	double scaleX;
+	double scaleY;
 	
 	
 	//Find Path
@@ -79,8 +79,17 @@ public class MapView extends ImageView {
 		this.window_width=w;
 		this.window_height= (int) new_height;
 		
+		int oldwidth = this.bitmaps.getWidth();
+		int oldheight = this.bitmaps.getHeight();
+		
 		//create the scaled bitmap for screen size
 		this.scaled_bitmap = Bitmap.createScaledBitmap(bitmaps, this.window_width, this.window_width, false);
+		this.scaleX = (double)this.scaled_bitmap.getWidth()/(double)this.bitmaps.getWidth();
+		this.scaleY = (double)this.scaled_bitmap.getHeight()/(double)this.bitmaps.getHeight();
+		System.out.println("Scale: " + scaleX + " " + scaleY + "/n");
+
+		
+		
 		super.onSizeChanged(w, h, oldw, oldh);
 	}
 	
@@ -105,26 +114,16 @@ public class MapView extends ImageView {
 
 	@Override
 	public void onDraw(Canvas canvas) {
-		canvas.drawBitmap(this.bitmaps, 0, 0, null);
-		//canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
+		canvas.drawBitmap(this.scaled_bitmap, 0, 0, null);
 		
-		//int imgWidth = this.window_width;
-		//int imgHeight = this.window_height;
-		
-		//float scaleX = imgWidth / map.getMapWidth();
-		//float scaleY = imgHeight / map.getMapHeight();
 		
 		Paint paint = new Paint();
 		paint.setColor(Color.RED);
 		paint.setStrokeWidth(3);
 		
+		System.out.println("Scale: " + scaleX + " " + scaleY);
+		
 		if(line){
-//			Node startNode = map.getNodeFromID(startID);
-//			Node endNode = map.getNodeFromID(endID);			
-//			Vector<Coord> Path= map.getShortestPathCoords(startNode, endNode, false);
-			
-
-			
 			if(Path.size()>=2){	
 				
 				for(int i=1;i< Path.size();i++){
