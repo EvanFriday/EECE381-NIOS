@@ -43,4 +43,5 @@
     <string name="to_qrscan">Scan A QR Code</string>
     <string name="scanning">Scanning...</string>
     <string name="connect_wifi">Connect to this Wifi Network</string>
+    <string name="scan_location">Get current location from QR</string>
 </resources>

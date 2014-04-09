@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
@@ -38,9 +39,11 @@ public class qrScan extends Activity
     TextView scanText;
     Button scanButton;
     Button wifiButton;
+    Button locButton;
     String networkSSID;
     String networkType;
     String networkPass;
+    String scannedLocation;
     ImageScanner scanner;
     private boolean wifiInfo = false;
     private boolean barcodeScanned = false;
@@ -73,6 +76,17 @@ public class qrScan extends Activity
 
         scanButton = (Button)findViewById(R.id.ScanButton);
         wifiButton = (Button)findViewById(R.id.WifiButton);
+        locButton = (Button)findViewById(R.id.LocationButton);
+        locButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (barcodeScanned) {
+					Intent i = new Intent(qrScan.this, PathFinder.class);
+					i.putExtra("currentLocation", scannedLocation);
+					startActivity(i);
+				}
+			}
+        });
         scanButton.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     if (barcodeScanned) {
@@ -190,6 +204,10 @@ public class qrScan extends Activity
                  		scanText.setText("Wifi network information: SSID= "+parts[1]+" Type= "+parts[2]+" Pass= "+parts[3]);
                  		barcodeScanned=true;
                  		wifiInfo=true;
+                    	}
+                    	else if (ntwkInfo.contains("NODE:")){
+                    		String[] parts = ntwkInfo.split(":");
+                    		scannedLocation = parts[1];
                     	}
                     	
                     }

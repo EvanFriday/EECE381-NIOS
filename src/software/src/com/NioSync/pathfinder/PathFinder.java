@@ -165,6 +165,24 @@ public class PathFinder extends Activity {
 
 			}
 		});
+		
+		Intent i = getIntent();
+		if (i.getExtras().containsKey("currentLocation")) {
+			String scannedLocation = i.getExtras().getString("currentLocation");
+			//****************update map***********************
+	    	Node startNode = map_object.getNodeFromID(scannedLocation);
+	    	Node endNode = map_object.getNodeFromName(dest_loc);
+
+	    	newPath=map_object.getShortestPathCoords(startNode, endNode, false);
+
+	    	//start updating
+	    	mapView = (MapView) findViewById(R.id.map_container);
+	    	//mapView.setData( mapTest.loadMapFromFile("d") , startID, endID, true);
+	    	//mapView.setLine(0, 0, 400, 400);
+	    	mapView.setPath(newPath, true);
+	    	mapView.invalidate();
+	    	//*************************************************
+		}
 	}
 	
 	
