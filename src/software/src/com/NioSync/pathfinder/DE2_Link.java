@@ -34,8 +34,8 @@ public class DE2_Link extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
 		setContentView(R.layout.get_map);
-		ipAddress  = "127.0.0.1";
-		port = 5050;
+		ipAddress  = "192.168.1.140";
+		port = 50002;
 		Sock = new SocketHandler(ipAddress,port);
 		text = (TextView) findViewById(R.id.Transfer_Progress);
 		progress_bar = (ProgressBar) findViewById(R.id.Map_DL_Progress_Bar);
@@ -64,50 +64,103 @@ public class DE2_Link extends Activity {
 			return;
 		}
 		if(!async_running){
+			Sock.createSocket();
+			Sock.writeSocket();
+			Sock.readFromSocket();
 			Sock.execute((Void) null);
 		}
 			
 	}
-
-	public class SocketHandler extends AsyncTask<Void, Void, Void> {
+	
+	public class SocketHandler extends AsyncTask<Void, Void, Socket> {
 		private Socket socket;
 		private OutputStream out;
 		private InputStream in;
-		byte msg;
-		TCPTask tcpt;
+		byte[] message;
 		String ipAddress;
 		Integer port;
 		public SocketHandler(String ipAddress,int port){
 			this.ipAddress = ipAddress;
 			this.port = port;
-			this.msg = 0x01;
+			
+			this.message = new byte[2];
+			this.message[0] = 0x01;
+			this.message[1] = 0x31;
+			
 		}
 		protected void onPreExecute(){
 			async_running=true;
 			text.setText("beginning socket connection");
 			progress_bar.setProgress(10);
 		}
-		protected Void doInBackground(Void... params) {
+		public void createSocket(){
 			try {
 				this.socket = new Socket(ipAddress,port);
-				text.setText("socket created");
-				this.out=socket.getOutputStream();
-				this.in=socket.getInputStream();
-				progress_bar.setProgress(25);
-				text.setText("sending start signal to de2");
-				this.out.write(msg);
+				out=socket.getOutputStream();
+				in=socket.getInputStream();
+			} catch (UnknownHostException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		public void writeSocket(){
+			text.setText("socket created");
+			progress_bar.setProgress(25);
+			text.setText("sending start signal to de2");
+			try {
+				out.write(message);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		public void readFromSocket(){
+			if (socket != null && socket.isConnected()
+					&& !socket.isClosed()) {
+				try {
+
+					// See if any bytes are available from the Middleman
+					int bytes_avail = in.available();
+					
+					if (bytes_avail > 0) {
+						// If so, read them in and create a sring
+						byte buf[] = new byte[bytes_avail];
+						in.read(buf);
+						final String s = new String(buf, 0, bytes_avail,"US-ASCII");
+						// As explained in the tutorials, the GUI can not be
+						// updated in an asyncrhonous task. So, update the GUI
+						// using the UI thread.
+							
+						String filename = "nodes.xml";
+						FileOutputStream outputStream;
+						outputStream = openFileOutput(filename,Context.MODE_PRIVATE);
+						outputStream.write(s.getBytes());
+						outputStream.close();
+						
+					}
+					out.close();
+					in.close();
+					socket.close();
+				
+				} catch (IOException e) {
+					e.printStackTrace();
+			}
+		}
+		}
+		protected Socket doInBackground(Void... voids) {
+			
+			try {
+
 				progress_bar.setProgress(50);
-				this.tcpt = new TCPTask(this.socket,this.in,this.out);
-				this.tcpt.run();
-				this.out.close();
-				this.in.close();
-				this.socket.close();
 				progress_bar.setProgress(90);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return null;
+			return this.socket;
 		}
 		protected void onPostExecute() {
 			async_running=false;
@@ -131,42 +184,7 @@ public class DE2_Link extends Activity {
 						progress_bar.setProgress(60);
 					}
 				});
-				if (socket != null && socket.isConnected()
-						&& !socket.isClosed()) {
-					try {
-	
-						// See if any bytes are available from the Middleman
-						int bytes_avail = in.available();
-						
-						if (bytes_avail > 0) {
-							// If so, read them in and create a sring
-							byte buf[] = new byte[bytes_avail];
-							in.read(buf);
-							final String s = new String(buf, 0, bytes_avail,"US-ASCII");
-							// As explained in the tutorials, the GUI can not be
-							// updated in an asyncrhonous task. So, update the GUI
-							// using the UI thread.
-								
-							String filename = "nodes.xml";
-							FileOutputStream outputStream;
-							outputStream = openFileOutput(filename,Context.MODE_PRIVATE);
-							outputStream.write(s.getBytes());
-							outputStream.close();
-							
-	
-							runOnUiThread(new Runnable() {
-								public void run() {
-									text.setText(s);
-									progress_bar.setProgress(75);
-								}
-							});
-						}
-						socket.close();
-					
-					} catch (IOException e) {
-						e.printStackTrace();
-				}
-			}
+				
 		}
 	}
 }
