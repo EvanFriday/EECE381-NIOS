@@ -208,6 +208,7 @@ public class qrScan extends Activity
                     	else if (ntwkInfo.contains("NODE:")){
                     		String[] parts = ntwkInfo.split(":");
                     		scannedLocation = parts[1];
+                    		barcodeScanned=true;
                     	}
                     	
                     }
