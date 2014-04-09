@@ -165,7 +165,7 @@ public class PathFinder extends Activity {
 
 			}
 		});
-		
+		/*
 		Intent i = getIntent();
 		if (i.getExtras().containsKey("currentLocation")) {
 			String scannedLocation = i.getExtras().getString("currentLocation");
@@ -183,6 +183,7 @@ public class PathFinder extends Activity {
 	    	mapView.invalidate();
 	    	//*************************************************
 		}
+		*/
 	}
 	
 	
