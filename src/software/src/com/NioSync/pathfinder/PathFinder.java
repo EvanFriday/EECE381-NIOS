@@ -60,8 +60,7 @@ public class PathFinder extends Activity {
 
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		//************search action bar************
-		// TODO
+		//************search action bar option************
 		// Create an array adapter to populate dropdownlist
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_dropdown_item, searchOption);
  
@@ -193,7 +192,6 @@ public class PathFinder extends Activity {
 	
 	
 	//**************set up menu*****************
-	// TODO
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
@@ -204,6 +202,38 @@ public class PathFinder extends Activity {
 	    SearchManager searchManager =(SearchManager) getSystemService(Context.SEARCH_SERVICE);
 	    SearchView searchView =(SearchView) menu.findItem(R.id.action_search).getActionView();
 	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    
+	   //******************Search Execute*******************
+	    //TODO
+	    searchView.setIconifiedByDefault(false);
+	    
+	    SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() 
+        {
+            @Override
+            public boolean onQueryTextChange(String newText) 
+            {
+                // this is your adapter that will be filtered
+                //adapter.getFilter().filter(newText);
+            	if(map_object.getNodeFromName(newText)== null)
+            		Toast.makeText(getBaseContext(), "No such Room ", Toast.LENGTH_SHORT).show();
+            	else
+            		Toast.makeText(getBaseContext(), "Room Found!!!!!!", Toast.LENGTH_SHORT).show();
+            	
+                return true;
+            }
+            @Override
+            public boolean onQueryTextSubmit(String query) 
+            {
+                // this is your adapter that will be filtered
+                //adapter.getFilter().filter(query);
+            	Toast.makeText(getBaseContext(), "Execute Search ", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        };
+        searchView.setOnQueryTextListener(queryTextListener);
+	    
+	    
+	   //******************Search Execute*******************
 	    
 	    return super.onCreateOptionsMenu(menu);
 	}
