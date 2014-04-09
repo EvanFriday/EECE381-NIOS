@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,6 +30,8 @@ public class PathFinder extends Activity {
 	private Map map_object;
 	private Spinner start_loc_spin,dest_loc_spin;
 	private ArrayAdapter<String> start_adapt,dest_adapt;
+	private EditText searchString;
+	private Button searchButton;
     @Override	
     protected void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -41,6 +44,16 @@ public class PathFinder extends Activity {
         dest_loc_spin = (Spinner) findViewById(R.id.destLoc);
         start_adapt = spindownPopulate(start_loc_spin);
         dest_adapt = spindownPopulate(dest_loc_spin);
+        searchButton = (Button) findViewById(R.id.searchButton);
+        
+     
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	searchClicked();
+            }
+        });
+        
+        
         
         start_loc_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
         	public void onItemSelected(AdapterView<?> parent, View itemClicked, int position, long id){
@@ -126,5 +139,11 @@ public class PathFinder extends Activity {
 		spin.setAdapter(spinner_adapter);
 		return spinner_adapter;
     }
+    
+    public void searchClicked() {
+    	this.searchString = (EditText) findViewById(R.id.search_input);
+    	
+    }
+  
     
 }
