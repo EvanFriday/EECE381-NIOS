@@ -50,11 +50,10 @@ public class MainMenu extends Activity {
         ListView menuList = (ListView) findViewById(R.id.listview_menu);
         String [] menu_items = {
         		//getResources().getString(R.string.to_map),
-        		getResources().getString(R.string.download_map),
-        		getResources().getString(R.string.to_map_select),
+        		//getResources().getString(R.string.download_map),
+        		//getResources().getString(R.string.to_map_select),
         		getResources().getString(R.string.to_qrscan),
         		getResources().getString(R.string.to_help)
-        		
         };
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this, R.layout.menu_item, menu_items);
         menuList.setAdapter(adapt);
